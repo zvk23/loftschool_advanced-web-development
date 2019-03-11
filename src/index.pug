@@ -20,18 +20,24 @@ html(lang="en")
     title Portfolio | main page
   body
     .wrapper
-      .container
-        header.header
-          .header__logo ЕВ
-          nav.header__nav
-            ul.header__nav-list
-              each item in menuItems
-                li.header__nav-item
-                  a(href="#").header__nav-link= item
-          .header__social-block
-            ul.header__social-list
-              li.header__social-item
-                a(href="https://vk.com/zvikk").header__social-link
-                  +icon('insta', 'header__social-icon')
-                  +icon('vk', 'header__social-icon')
-                  +icon('github', 'header__social-icon')
+      section.section.section--main
+        .container
+          header.header
+            .header__logo
+              a(href="#").header__logo-link ЕВ
+            nav.header__nav
+              ul.header__nav-list
+                each item in menuItems
+                  li.header__nav-item
+                    a(href="#").header__nav-link= item
+            .header__social-block
+              ul.header__social-list
+                li.header__social-item
+                  a(href="https://vk.com/zvikk").header__social-link
+                    +icon('insta', 'header__social-icon')
+                li.header__social-item
+                  a(href="https://vk.com/zvikk").header__social-link
+                    +icon('vk', 'header__social-icon')
+                li.header__social-item
+                  a(href="https://vk.com/zvikk").header__social-link
+                    +icon('github', 'header__social-icon')

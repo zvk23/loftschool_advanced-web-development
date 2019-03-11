@@ -1,17 +1,97 @@
 .header {
     display: flex;
     align-items: center;
+    position: absolute;
+    top: 65px;
+    left: 0;
+    right: 0;
+
+    &__logo {
+        font-family: 'OS-ExtraBold';
+        font-size: 36px;
+    }
+
+    &__logo-link {
+        transition: opacity .3s ease;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
 
     &__nav {
         margin-left: auto;
+        flex-grow: 1;
+        margin-left: 90px;
     }
 
     &__nav-list {
         display: flex;
         align-items: center;
+        flex-grow: 1;
+        justify-content: space-between;
+    }
+
+    &__nav-item {
+        flex-grow: 1;
+    }
+
+    &__nav-link {
+        display: flex;
+        flex-grow: 1;
+        align-items: center; justify-content: center;
+        line-height: 36px;
+        font-size: 1em;
+        transition: color .3s ease-in;
+
+        &:hover {
+            transition: color .3s ease-out;
+            color: $violet-color;
+        }
     }
 
     &__social-block {
         margin-left: 90px;
+    }
+
+    &__social-list {
+        display: flex;
+        align-items: center;
+    }
+
+    &__social-item {
+
+        &:nth-child(n+2) {
+            margin-left: 36px;
+        }
+    }
+
+    &__social-link {
+        display: inline-block;
+        padding: 2px;
+
+        &:hover {
+            .header__social-icon {
+                fill: $violet-color;
+                transition: fill .3s ease-out;
+            }
+        }
+    }
+
+    &__social-icon {
+        fill: $text-color;
+        transition: fill .3s ease-in;
+
+        &--insta {
+            width: 25px;
+        }
+
+        &--vk {
+            width: 31px;
+        }
+
+        &--github {
+            width: 27px;
+        }
     }
 }
