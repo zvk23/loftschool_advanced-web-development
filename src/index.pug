@@ -20,17 +20,16 @@ html(lang="en")
     title Portfolio | main page
   body
     .wrapper
-      section.section.section--main
-        .container
-          header.header
-            .header__logo
-              a(href="#").header__logo-link ЕВ
-            nav.header__nav
-              ul.header__nav-list
-                each item in menuItems
-                  li.header__nav-item
-                    a(href="#").header__nav-link= item
-            .header__social-block
+      header.header
+        .container.header__container
+          .header__logo
+            a(href="#").header__logo-link ЕВ
+          nav.header__nav
+            ul.header__nav-list
+              each item in menuItems
+                li.header__nav-item
+                  a(href="#").header__nav-link= item
+          .header__social-block
               ul.header__social-list
                 li.header__social-item
                   a(href="https://vk.com/zvikk").header__social-link
@@ -41,3 +40,18 @@ html(lang="en")
                 li.header__social-item
                   a(href="https://vk.com/zvikk").header__social-link
                     +icon('github', 'header__social-icon')
+      section.section.section--main
+        .container.main
+            .main__content
+              h3.main__subtitle 
+                | Личный сайт
+                br
+                | веб-разработчика
+              h1.title.title--main.main__title 
+                |Виктор 
+                br
+                |Ефименко
+            a.main__scroll-btn(href="")
+              | Скролл
+              +icon('scroll', 'main__scroll-icon')
+            

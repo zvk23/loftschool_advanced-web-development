@@ -1,10 +1,69 @@
 .header {
-    display: flex;
-    align-items: center;
     position: absolute;
     top: 65px;
     left: 0;
     right: 0;
+    z-index: 10;
+
+    &.is-fixed {
+        transition: box-shadow .3s;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: #ffffff;
+        height: 105px;
+        box-shadow: 0 0 40px rgba(0, 0, 0, .2);
+
+        .header {
+
+            &__nav {
+                display: flex;
+                flex-grow: 0;
+                margin: 0 auto;
+                height: 100%;
+                align-items: stretch;
+            }
+
+            &__nav-item {
+                padding: 0 20px;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                position: relative;
+
+                &:before {
+                    display: block;
+                    content: '';
+                    height: 3px;
+                    width: 100%;
+                    background-color: $violet-color;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    opacity: 0;
+                    transition: opacity .3s;
+                }
+
+                &:hover {
+
+                    &:before {
+                        opacity: 1;
+                    }
+                }
+            }
+
+            &__social-block {
+                margin: 0;
+            }
+        }
+    }
+
+    &__container {
+        display: flex;
+        align-items: center;
+        height: 100%;
+    }
 
     &__logo {
         font-family: 'OS-ExtraBold';
@@ -34,6 +93,14 @@
 
     &__nav-item {
         flex-grow: 1;
+        cursor: pointer;
+
+        &:hover {
+            .header__nav-link {
+                transition: color .3s ease-out;
+                color: $violet-color;
+            }
+        }
     }
 
     &__nav-link {
@@ -43,11 +110,6 @@
         line-height: 36px;
         font-size: 1em;
         transition: color .3s ease-in;
-
-        &:hover {
-            transition: color .3s ease-out;
-            color: $violet-color;
-        }
     }
 
     &__social-block {

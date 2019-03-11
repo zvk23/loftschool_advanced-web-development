@@ -1,0 +1,46 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
+    &__content {
+        display: flex;
+        align-items: flex-start;
+        margin: auto;
+    }
+
+    &__subtitle {
+        font-family: 'OS-SemiBold';
+        font-size: 18px;
+        text-align: right;
+        color: $gray-text;
+    }
+
+    &__title {
+        margin-left: 65px;
+        font-family: 'OS-ExtraBold';
+        font-size: 72px;
+        line-height: 60px;
+        color: $text-color;
+    }
+
+    &__scroll-btn {
+        margin-bottom: 40px;
+        display: flex;
+        align-items: center;
+        font-family: 'OS-SemiBold';
+        font-size: 18px;
+        transition: opacity .3s;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+
+    &__scroll-icon {
+        height: 30px;
+        fill: $text-color
+    }
+}
