@@ -1,0 +1,41 @@
+.skills {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__header {
+        width: 40%;
+    }
+
+    &__skills-container {
+        margin: 60px 96px 0 auto;
+    }
+
+    &__skills-block {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        &:nth-child(n+2) {
+            margin-top: 50px;
+        }
+    }
+
+    &__block-title {
+        font-family: 'OS-Bold';
+        font-size: 24px;
+    }
+
+    &__skills-list {
+        display: flex;
+        align-items: center;
+        margin-top: 40px;
+    }
+
+    &__item {
+
+        &:nth-child(n+2) {
+            margin-left: 50px;
+        }
+    }
+}

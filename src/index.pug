@@ -1,13 +1,3 @@
--
-    var menuItems = [
-        'Главная',
-        'Обо мне',
-        'Навыки',
-        'Работы',
-        'Отзывы',
-        'Связаться'
-    ]
-
 include ./mixins.pug
 
 <!DOCTYPE html>
@@ -20,66 +10,6 @@ html(lang="en")
     title Portfolio | main page
   body
     .wrapper
-      header.header
-        .container.header__container
-          .header__logo
-            a(href="#").header__logo-link ЕВ
-          nav.header__nav
-            ul.header__nav-list
-              each item in menuItems
-                li.header__nav-item
-                  a(href="#").header__nav-link= item
-          .header__social-block
-              ul.header__social-list
-                li.header__social-item
-                  a(href="https://instagram.com/vkthevk", target="_blank").header__social-link
-                    +icon('insta', 'header__social-icon')
-                li.header__social-item
-                  a(href="https://vk.com/zvikk", target="_blank").header__social-link
-                    +icon('vk', 'header__social-icon')
-                li.header__social-item
-                  a(href="https://github.com/zvikk", target="_blank").header__social-link
-                    +icon('github', 'header__social-icon')
-      section.section.section--main.section--bg
-        .container
-          .main
-            .main__content
-              h3.main__subtitle 
-                | Личный сайт
-                br
-                | веб-разработчика
-              h1.title.title--main.main__title 
-                |Виктор 
-                br
-                |Ефименко
-            a.main__scroll-btn(href="")
-              | Скролл
-              +icon('scroll', 'main__scroll-icon')
-          .about
-            .about__content-container
-              .about__main-info
-                .about__avatar-container
-                  +image('content/user.jpg', 'about__avatar')
-                .about__info-data
-                  .about__info-data-row
-                    .about__info-data-title Проживаю
-                    .about__info-data-description Ростов-на-Дону
-                  .about__info-data-row
-                    .about__info-data-title Возраст
-                    .about__info-data-description 21 год
-                  .about__info-data-row
-                    .about__info-data-title Родился
-                    .about__info-data-description 23 марта 1997
-              article.about__article
-                header.about__article-header
-                  h5.about__article-subtitle Привет, меня зовут
-                  h3.about__article-title Ефименко Виктор
-                  span.about__article-header-description
-                    | Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
-                  .about__article-body
-                    | Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. 
-                    | Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
-
-
-              
-            
+      include pug/header.pug
+      include pug/main-section.pug
+      include pug/skills-section.pug

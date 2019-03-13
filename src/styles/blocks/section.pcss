@@ -1,11 +1,50 @@
 .section {
-    min-height: 100vh;
+	min-height: 100vh;
 
-    &--main {
-        background-image: url('/src/images/Mountain-Baloon.jpg');
-        background-size: 100%;
-        background-repeat: no-repeat;
-        height: 1780px;
-        display: flex;
-    }
+	&--main {
+		background-image: url("/src/images/Mountain-Baloon.jpg");
+		background-size: 100%;
+		background-repeat: no-repeat;
+		height: 1780px;
+		display: flex;
+		position: relative;
+
+		&:before {
+			position: absolute;
+			display: block;
+			content: "";
+			bottom: 36px;
+			left: 0;
+			right: 50%;
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 120px 0 0 50vw;
+			border-color: transparent transparent transparent #fff;
+		}
+
+		&:after {
+			position: absolute;
+			display: block;
+			content: "";
+			bottom: 36px;
+			left: 50%;
+			right: 0;
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 0 0 120px 50vw;
+			border-color: transparent transparent #fff transparent;
+		}
+	}
+
+	&--skills {
+		padding-top: 150px;
+
+		.container {
+			background-image: url("/src/images/backpack.jpg");
+			background-repeat: no-repeat;
+			background-position: left -90px bottom 0;
+		}
+	}
 }
