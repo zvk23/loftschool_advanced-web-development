@@ -1,0 +1,62 @@
+-
+    var miniSlider = [
+        {
+            itemClassname: 'portfolio__work-item',
+            imageName: 'content/portfolio/1.jpg',
+            iamgeClass: 'portfolio__slide-image'
+        },
+        {
+            itemClassname: 'portfolio__work-item',
+            imageName: 'content/portfolio/2.jpg',
+            iamgeClass: 'portfolio__slide-image'
+        },
+        {
+            itemClassname: 'portfolio__work-item',
+            imageName: 'content/portfolio/3.jpg',
+            iamgeClass: 'portfolio__slide-image'
+        },
+        {
+            itemClassname: 'portfolio__work-item  is-active',
+            imageName: 'content/portfolio/4.jpg',
+            iamgeClass: 'portfolio__slide-image'
+        }
+    ]
+
+section.section.section--portfolio
+    .container.portfolio
+        h3.section-title Мои работы
+        .portfolio__slider-container
+            .portfolio__slider
+                .portfolio__works-switcher
+                    .portfolio__work-preview
+                        +image('content/portfolio/1.jpg','portfolio__work-image')
+                        ul.portfolio__work-list
+                            each item in miniSlider
+                                li(class=`${item.itemClassname}`)
+                                    +image(`${item.imageName}`, '')
+                        
+                        //- switch button
+                        .portfolio__btns-container
+                            button.portfolio__switch-btn.portfolio__switch-btn--prev.is-disabled
+                                +icon('arrow-down', 'portfolio__switch-btn-icon')
+                            button.portfolio__switch-btn.portfolio__switch-btn--next
+                                +icon('arrow-down', 'portfolio__switch-btn-icon')
+                
+                .portfolio__work-info
+                    .portfolio__info-tags-container
+                        ul.portfolio__info-tags-list
+                            li.portfolio__info-tags-item
+                                | HTML
+                            li.portfolio__info-tags-item
+                                | CSS
+                            li.portfolio__info-tags-item
+                                | JavaScript
+                    .portfolio__work-description
+                        .portfolio__work-title Сайт школы образования
+                        .portfolio__work-brief-description
+                            | Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 
+                            | 2 месяца только самых тяжелых испытаний и бессонных ночей!
+                        a(href="", target="_blank").portfolio__work-link
+                            +icon('link', 'portfolio__work-link-icon')
+                            span.portfolio__work-link-name
+                            | Посетить сайт

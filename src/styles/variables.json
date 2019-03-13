@@ -1,8 +1,13 @@
 {
+  "orange": "#f29400",
   "text-color": "#414c63",
   "links-color": "#4b6fd7",
   "gray-text": "#b2b9c1",
+  "light-gray-color": "#f1f5f9",
   "violet-color": "#5500f2",
+  "steel-color": "#2d3c4e",
+  "work-tags-color": "#9096a1",
+  "link-color": "#4b6fd7",
   "bp-desktop-hd": "1800px",
   "bp-desktop": "1200px",
   "bp-tablets": "768px",
