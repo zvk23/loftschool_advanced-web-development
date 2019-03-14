@@ -1,0 +1,51 @@
+-
+    var navItems = [
+        'Главная',
+        'Обо мне',
+        'Навыки',
+        'Работы',
+        'Отзывы',
+        'Связаться'
+    ]
+
+section.section.section--footer
+    .container.footer
+        .footer__side.footer__side--left
+            .footer__copyright &copy; 2019
+            .footer__info-block
+                .footer__info-title
+                    | Ефименко 
+                    br
+                    | Виктор
+                .footer__info-subtitle
+                    | Личный сайт
+                    br
+                    | Веб-разработчика
+        
+        .footer__side.footer__side--right
+            nav.footer__nav
+                ul.footer__nav-list
+                    each item in navItems 
+                        li.footer__nav-item
+                            a.footer__nav-link(href="#", target="_blank")= item
+            .footer__subcontainer
+                .footer__social-block
+                    span.footer__social-text
+                        | Этот сайт я&nbsp;сделал в&nbsp;рамках обучения в&nbsp;Школе онлайн образования Loftschool
+                    ul.footer__social-list
+                        li.footer__social-item
+                            a.footer__social-link(href="https://instagram.com/vkthevk", target="_blank") 
+                                +icon('insta', 'footer__social-icon')
+                        li.footer__social-item
+                            a.footer__social-link(href="https://vk.com/zvikk", target="_blank") 
+                                +icon('vk', 'footer__social-icon')
+                        li.footer__social-item
+                            a.footer__social-link(href="https://github.com/zvikk", target="_blank") 
+                                +icon('github', 'footer__social-icon')
+                
+                .footer__quote
+                    .footer__quote-text 
+                        | Всегда пишите код так, будто сопровождать его будет склонный к&nbsp;насилию психопат, который знает где вы&nbsp;живете
+                    .footer__quote-author
+                        | Martin Golding
+        
