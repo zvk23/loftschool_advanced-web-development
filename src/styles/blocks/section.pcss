@@ -154,3 +154,40 @@
 		}
 	}
 }
+
+// 320px 
+@include phones {
+	.main-parallax-wrapper {
+		background-position: right -400px top;
+
+		&:before {
+			border-width: 25px 0 0 50vw;
+		}
+
+		&:after {
+			border-width: 0 0 25px 50vw;
+		}
+	}
+	.section {
+
+		&--about {
+			padding-bottom: 105px;
+		}
+
+		&--skills {
+			padding-top: 100px;
+		}
+
+		&--budda {
+			padding-top: 110px;
+			
+			&:before {
+				border-width: 0 50vw 20px 0;
+			}
+
+			&:after {
+				border-width: 20px 50vw 0 0;
+			}
+		}
+	}
+}

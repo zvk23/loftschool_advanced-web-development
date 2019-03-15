@@ -215,7 +215,6 @@
 }
 
 // 768px
-
 @include tablets {
     .portfolio {
 
@@ -253,6 +252,49 @@
 
         &__info-tags-list {
             justify-content: center;
+        }
+    }
+}
+
+// 320px
+@include phones {
+    .portfolio {
+        max-width: 100%;
+        width: 100%;
+
+        .section-title {
+            text-align: center;
+        }
+
+        &__works-switcher {
+            width: 100%;
+            margin: 0;
+            height: auto;
+            flex-shrink: 0;
+        }
+
+        &__work-list {
+            display: none;
+        }
+
+        &__work-image {
+            width: 100%;
+            height: 180px;
+            flex-shrink: 0;
+        }
+
+        &__work-number {
+            display: none;
+        }
+
+        &__btns-container {
+            bottom: 0;
+        }
+
+        &__work-info {
+            width: 100%;
+            margin-top: 60px;
+            padding: 0 7.5%;
         }
     }
 }

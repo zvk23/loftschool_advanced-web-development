@@ -78,3 +78,41 @@
         }
     }
 }
+
+// 320px
+@include phones {
+    .skills {
+        
+        &__header {
+            width: 100%;
+
+            .section-title,
+            .section-title__subtitle {
+                text-align: left;
+            }
+
+            .section-title__subtitle {
+                margin-top: 35px;
+            }
+        }
+
+        &__skills-list {
+            width: 100%;
+            flex-flow: row wrap;
+            justify-content: space-between;
+        }
+
+        &__item {
+            max-width: 45%;
+            margin: 0 0 20px 0;
+
+            &:nth-child(n+2) {
+                margin-left: 0;
+            }
+        }
+
+        &__mobile-bg {
+            margin-top: 50px;
+        }
+    }
+}

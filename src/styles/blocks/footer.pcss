@@ -192,3 +192,19 @@
 		}
 	}
 }
+
+// 320px
+@include phones {
+	.footer {
+		flex-direction: column;
+		align-items: flex-start;
+
+		&__side {
+			margin: 0;
+
+			&--right {
+				margin-top: 40px;
+			}
+		}
+	}
+}

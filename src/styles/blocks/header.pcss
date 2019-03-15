@@ -162,7 +162,7 @@
 		flex-shrink: 0;
 		width: 30px;
 		height: 30px;
-        display: none;
+		display: none;
 	}
 
 	&__nav-btn {
@@ -175,20 +175,20 @@
 
 		&.is-active {
 			.header__nav-btn-line {
-                top: 50%;
+				top: 50%;
 
 				&:nth-child(1) {
-                    transition: top .3s .0s, opacity .3s .0s;
-                    opacity: 0;
+					transition: top 0.3s 0s, opacity 0.3s 0s;
+					opacity: 0;
 				}
 				&:nth-child(2) {
 					top: 50%;
 					transform: translateY(-50%) rotate(45deg);
-                    transition: top 3s, transform .3s .3s;
+					transition: top 3s, transform 0.3s 0.3s;
 				}
 				&:nth-child(3) {
-                    transform: translateY(-50%) rotate(-45deg);
-                    transition: top .3s, transform .3s .3s;
+					transform: translateY(-50%) rotate(-45deg);
+					transition: top 0.3s, transform 0.3s 0.3s;
 				}
 			}
 		}
@@ -201,20 +201,20 @@
 		background-color: $text-color;
 		transform: translateY(-50%);
 		transform-origin: 50% 50%;
-        transition: top .3s .0s;
+		transition: top 0.3s 0s;
 
 		&:nth-child(1) {
 			top: 5px;
-            transition: top .3s .3s, opacity .3s .3s;
+			transition: top 0.3s 0.3s, opacity 0.3s 0.3s;
 		}
 		&:nth-child(2) {
 			top: 50%;
 			transform: translateY(-50%);
-            transition: top 3s .3s, transform .3s .0s;
+			transition: top 3s 0.3s, transform 0.3s 0s;
 		}
 		&:nth-child(3) {
 			top: calc(100% - 5px);
-            transition: top .3s .3s, transform .3s .0s;
+			transition: top 0.3s 0.3s, transform 0.3s 0s;
 		}
 	}
 }
@@ -222,22 +222,30 @@
 // 768px
 @include tablets {
 	.header {
+		&__logo {
+			margin: 0 auto 0 0;
+		}
 
-        &__logo {
-            margin: 0 auto 0 0;
-        }
-
-        &.is-fixed {
-            .header__nav {
-                display: none;
-            }
-        }
+		&.is-fixed {
+			.header__nav {
+				display: none;
+			}
+		}
 		&__nav {
 			display: none;
 		}
 
-		&__nav-btn-wrapper{
-            display: flex;
+		&__nav-btn-wrapper {
+			display: flex;
+		}
+	}
+}
+
+// 320px
+@include phones {
+	.header {
+		&__social-block {
+			display: none;
 		}
 	}
 }
