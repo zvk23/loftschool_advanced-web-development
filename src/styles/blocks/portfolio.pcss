@@ -12,10 +12,9 @@
     }
 
     &__works-switcher {
-        height: 550px;
         display: flex;
         position: relative;
-        flex-shrink: 0;
+        z-index: 5;
     }
 
     &__work-preview {
@@ -97,10 +96,20 @@
 
     // work info
     &__work-info {
-        margin-left: 155px;
+        padding-left: 155px;
+        width: 50%;
+        position: relative;
     }
 
-    &__info-tags-container {
+    &__work-number {
+        font-family: 'OS-ExtraBold';
+        font-size: 300px;
+        line-height: 1;
+        position: absolute;
+        left: -15px;
+        top: -45px;
+        display: inline-block;
+        color: #f0f0f0;
     }
 
     &__info-tags-list {
@@ -179,5 +188,27 @@
         left: 0;
         top: 50%;
         transform: translateY(-50%)
+    }
+}
+
+@include desktopHd {
+    .portfolio {
+
+        &__works-switcher {
+            height: 350px;
+        }
+
+        &__work-list {
+            width: auto;
+        }
+
+        &__work-item {
+            height: 100px;
+            width: auto;
+
+            &:last-child {
+                display: none;
+            }
+        }
     }
 }
