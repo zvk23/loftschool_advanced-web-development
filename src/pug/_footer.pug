@@ -24,10 +24,11 @@ section.section.section--footer
         
         .footer__side.footer__side--right
             nav.footer__nav
-                ul.footer__nav-list
-                    each item in navItems 
-                        li.footer__nav-item
-                            a.footer__nav-link(href="#", target="_blank")= item
+                .footer__nav-aligment-container
+                    ul.footer__nav-list
+                        each item in navItems 
+                            li.footer__nav-item
+                                a.footer__nav-link(href="#", target="_blank")= item
             .footer__subcontainer
                 .footer__social-block
                     span.footer__social-text
