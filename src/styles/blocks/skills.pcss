@@ -38,13 +38,43 @@
             margin-left: 50px;
         }
     }
+
+    &__mobile-bg {
+        margin-top: 105px;
+        height: 275px;
+        display: none;
+    }
 }
 
+// 1200px
 @include desktop {
     .skills {
 
         &__skills-container {
             margin: 60px 0 0 auto;
+        }
+    }
+}
+
+// 768px 
+@include tablets {
+    .skills {
+        
+        &__header {
+            width: 60%;
+
+            .section-title,
+            .section-title__subtitle {
+                text-align: center;
+            }
+        }
+
+        &__skills-block {
+            align-items: center;
+        }
+
+        &__mobile-bg {
+            display: block;
         }
     }
 }
