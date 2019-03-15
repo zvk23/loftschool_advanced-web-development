@@ -1,8 +1,8 @@
-.portfolio {
+.portfolio { 
     display: flex;
     flex-direction: column;
 
-    &__slider-container {
+    &__slider-container { 
         margin-top: 90px;
     }
 
@@ -14,11 +14,11 @@
     &__works-switcher {
         display: flex;
         position: relative;
-        z-index: 5;
     }
 
     &__work-preview {
         display: flex;
+        z-index: 1;
     }
 
     &__work-list {
@@ -106,7 +106,7 @@
         font-size: 300px;
         line-height: 1;
         position: absolute;
-        left: -15px;
+        right: calc(-1ch + 15px );
         top: -45px;
         display: inline-block;
         color: #f0f0f0;
@@ -191,6 +191,7 @@
     }
 }
 
+// 1800px
 @include desktopHd {
     .portfolio {
 
@@ -209,6 +210,49 @@
             &:last-child {
                 display: none;
             }
+        }
+    }
+}
+
+// 768px
+
+@include tablets {
+    .portfolio {
+
+        &__slider-container {
+            margin-top: 60px;
+        }
+
+        &__slider {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        &__works-switcher {
+            flex-shrink: 0;
+            width:auto;
+            flex-grow: 1;
+            margin-right: 100px;
+        }
+
+        &__work-image {
+            width: 100%;
+            height: auto;
+        }
+
+        &__work-number {
+            right: calc(-1ch + 50px);   
+        }
+
+        &__work-info {
+            margin-top: 105px;
+            width: 60%;
+            padding-left: 0;
+            text-align: center;
+        }
+
+        &__info-tags-list {
+            justify-content: center;
         }
     }
 }
