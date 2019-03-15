@@ -119,3 +119,30 @@
         line-height: 1;
     }
 }
+
+// 768px 
+.reviews {
+
+    &__slider {
+        width: auto;
+        justify-content: space-between;
+        margin-top: 80px;
+    }
+
+    &__quote {
+        display: none;
+    }
+
+    &__slider-item {
+        padding-left: 40px;
+        width: 50%;
+
+        &:nth-child(n+2) {
+            margin: 0;
+        }
+    }
+
+    &__slide-comment {
+        font-size: 14px;
+    }
+}
