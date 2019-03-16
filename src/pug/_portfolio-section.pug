@@ -1,63 +1,61 @@
 -
-    var miniSlider = [
+    var previewList = [
         {
-            itemClassname: 'portfolio__work-item',
+            itemClassname: 'p-slider__short-preview-item',
             imageName: 'content/portfolio/1.jpg',
-            iamgeClass: 'portfolio__slide-image'
+            imageClass: 'portfolio__slide-image'
         },
         {
-            itemClassname: 'portfolio__work-item',
+            itemClassname: 'p-slider__short-preview-item',
             imageName: 'content/portfolio/2.jpg',
-            iamgeClass: 'portfolio__slide-image'
+            imageClass: 'portfolio__slide-image'
         },
         {
-            itemClassname: 'portfolio__work-item',
+            itemClassname: 'p-slider__short-preview-item is-active',
             imageName: 'content/portfolio/3.jpg',
-            iamgeClass: 'portfolio__slide-image'
-        },
-        {
-            itemClassname: 'portfolio__work-item  is-active',
-            imageName: 'content/portfolio/4.jpg',
-            iamgeClass: 'portfolio__slide-image'
+            imageClass: 'portfolio__slide-image'
         }
     ]
-
+    
+- var tags =  ['HTML','CSS','Javascript']
 section.section.section--portfolio
     .container.portfolio
-        h3.section-title Мои работы
-        .portfolio__slider-container
-            .portfolio__slider
-                .portfolio__works-switcher
-                    .portfolio__work-number 2
-                    .portfolio__work-preview
-                        +image('content/portfolio/1.jpg','portfolio__work-image')
-                        ul.portfolio__work-list
-                            each item in miniSlider
-                                li(class=`${item.itemClassname}`)
-                                    +image(`${item.imageName}`, '')
-                        
-                        //- switch button
-                        .portfolio__btns-container
-                            button.portfolio__switch-btn.portfolio__switch-btn--prev.is-disabled
-                                +icon('arrow-down', 'portfolio__switch-btn-icon')
-                            button.portfolio__switch-btn.portfolio__switch-btn--next
-                                +icon('arrow-down', 'portfolio__switch-btn-icon')
+        .portfolio__title
+            h3.section-title Мои работы
+        
+        .portfolio__slider
+            .p-slider
+                .p-slider__works-switcher
+                    .p-slider__work-number#work-number 2
+                    .p-slider__big-preview
+                        +image('content/portfolio/1.jpg', 'p-slider__big-image')
+                    ul.p-slider__short-preview-list
+                        each item in previewList
+                            li(class=`${item.itemClassname}`)
+                                +image(`${item.imageName}`, `${item.imageClass}`)
+                    
+                    .p-slider__buttons-container
+                        button.p-slider__change-bnt.p-slider__change-bnt--prev.is-disabled
+                            +icon('arrow-down', 'p-slider__change-bnt-icon')
+                        button.p-slider__change-bnt.p-slider__change-bnt--next
+                            +icon('arrow-down', 'p-slider__change-bnt-icon')
                 
-                .portfolio__work-info
-                    .portfolio__info-tags-container
-                        ul.portfolio__info-tags-list
-                            li.portfolio__info-tags-item
-                                | HTML
-                            li.portfolio__info-tags-item
-                                | CSS
-                            li.portfolio__info-tags-item
-                                | JavaScript
-                    .portfolio__work-description
-                        .portfolio__work-title Сайт школы образования
-                        .portfolio__work-brief-description
-                            | Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 
-                            | 2 месяца только самых тяжелых испытаний и бессонных ночей!
-                        a(href="", target="_blank").portfolio__work-link
-                            +icon('link', 'portfolio__work-link-icon')
-                            span.portfolio__work-link-name
+                //- slide info
+                .p-slider__info-block
+                    .p-slider__info-tags
+                        ul.p-slider__tags-list
+                            each tag in tags
+                                li.p-slider__tags-item
+                                    | #{tag}
+                    
+                    .p-slider__info-title
+                        h3.p-slider__work-title Сайт школы образования
+                    
+                    .p-slider__info-description
+                        | Этот парень проходил обучение веб-разработке не&nbsp;где-то, 
+                        | а&nbsp;в&nbsp;LoftSchool! 2&nbsp;месяца только самых тяжелых испытаний и&nbsp;бессонных ночей!
+                    
+                    .p-slider__info-link
+                        a(href="#").p-slider__work-link
+                            +icon('link', 'p-slider__link-icon')
                             | Посетить сайт
