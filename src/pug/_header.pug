@@ -1,34 +1,11 @@
--
-    var menuItems = [
-        'Главная',
-        'Обо мне',
-        'Навыки',
-        'Работы',
-        'Отзывы',
-        'Связаться'
-    ]
-
-
 header.header
   .container.header__container
     .header__logo
       a(href="#").header__logo-link ЕВ
     nav.header__nav
-      ul.header__nav-list
-        each item in menuItems
-          li.header__nav-item
-            a(href="#").header__nav-link= item
+        +nav-list('header__nav-list', 'header__nav-item', 'header__nav-link')
     .header__social-block
-        ul.header__social-list
-          li.header__social-item
-            a(href="https://instagram.com/vkthevk", target="_blank").header__social-link
-              +icon('insta', 'header__social-icon')
-          li.header__social-item
-            a(href="https://vk.com/zvikk", target="_blank").header__social-link
-              +icon('vk', 'header__social-icon')
-          li.header__social-item
-            a(href="https://github.com/zvikk", target="_blank").header__social-link
-              +icon('github', 'header__social-icon')
+        +social-list('header__social-list', 'header__social-item', 'header__social-link', 'header__social-icon')
     .header__nav-btn-wrapper
       .header__nav-btn.is-active
         span.header__nav-btn-line

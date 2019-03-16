@@ -55,8 +55,23 @@
 			box-shadow: 0 0 0 3px rgba($orange, 1);
 		}
 
-		&:hover {
-			opacity: 0.7;
+		&:before {
+			display: block;
+			content: '';
+			height: 100%;
+			width: 100%;
+			position: absolute;
+			left: 0;
+			top: 0;
+			background-color: rgba($orange, .2);
+			opacity: 0;
+			transition: opacity .3s;
+		}
+
+		&:not(.is-active)&:hover {
+			&:before {
+				opacity: 1;
+			}
 		}
 	}
 
