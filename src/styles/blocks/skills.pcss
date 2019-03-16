@@ -28,11 +28,13 @@
 
     &__skills-list {
         display: flex;
+        flex-direction: column;
         align-items: center;
         margin-top: 40px;
     }
 
     &__item {
+        position: relative;
 
         &:nth-child(n+2) {
             margin-left: 50px;
@@ -43,6 +45,46 @@
         margin-top: 105px;
         height: 275px;
         display: none;
+    }
+    // circles
+    &__item-icon {
+        width: 150px;
+        transform: rotate(180deg);
+    }
+
+    &__circle {
+        &--above {
+            stroke-dasharray: 565;
+            stroke-dashoffset: 100;
+        }
+    }
+
+    // skills row
+    &__skills-row {
+        display: flex;
+        align-items: center;
+    }
+
+    &__skill-title {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        font-family: 'OS-Bold';
+        font-size: 16px;
+        color: #bcbec3;
+    }
+
+    &__skills-item {
+
+        &:nth-child(n+2) {
+            margin-top: 60px;
+        }
+    }
+
+    &__skills-row {
+        margin-top: 45px;
     }
 }
 
