@@ -95,6 +95,7 @@
         &__skills-container {
             margin: 60px 0 0 auto;
         }
+
     }
 }
 
@@ -111,8 +112,24 @@
             }
         }
 
+        &__skills-container {
+            width: 100%;
+        }
+
+        &__skills-row {
+            flex-flow: row wrap;
+            justify-content: space-between;
+        }
+
         &__skills-block {
             align-items: center;
+        }
+
+        &__item {
+
+            &:nth-child(n+2) {
+                margin-left: 0;
+            }
         }
 
         &__mobile-bg {
@@ -145,12 +162,13 @@
         }
 
         &__item {
+            width: 45%;
             max-width: 45%;
             margin: 0 0 20px 0;
+        }
 
-            &:nth-child(n+2) {
-                margin-left: 0;
-            }
+        &__item-icon {
+            width: 100%;
         }
 
         &__mobile-bg {
