@@ -1,7 +1,7 @@
 .button {
     cursor: pointer;
 
-    &--submit {
+    &--gradient {
         font-family: 'OS-Bold';
         font-size: 18px;
         text-transform: uppercase;
@@ -18,5 +18,12 @@
         &:hover {
             opacity: 0.8;
         }
+    }
+}
+
+// 320px
+@include phones {
+    .button {
+        width: 100%;
     }
 }
