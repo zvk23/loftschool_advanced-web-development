@@ -11,25 +11,25 @@ section.section.section--skills
                 ul.skills__skills-list
                   -
                     var skills = [
-                      ['Frontend', ['HTML', 'CSS3', 'Javascript', 'jQuery & Vue.js']],
-                      ['Workflow', ['GIT', 'Terminal', 'Gulp', 'Webpack']]
-                    ] 
+                      ['Frontend', ['HTML5', 'CSS3', 'Javascript', 'jQuery & Vue.js']],
+                      ['Workflow', ['GIT', 'Terminal' , 'Gulp', 'Webpack']],
+                    ]
 
                   each item in skills
-                    - console.log(item)
                     li.skills__skills-item
                       h3.skills__block-title #{item[0]}
                       ul.skills__skills-row
-                        each skill in skills[0][1]
+                        each skill in item[1]
                           li.skills__item
-                            svg(viewBox="0 0 200 200" preserveAspectRatio="none").skills__item-icon
+                            .skill
+                              svg(viewBox="0 0 200 200" preserveAspectRatio="none").skills__item-icon
                                 circle(fill="none" stroke-width="9" stroke="#eaeaea" r="90" cx="100" cy="100").skills__circle.skills__circle--ibnder
                                 circle(fill="none" stroke-width="20" r="90" cx="100" cy="100" stroke="url(#circle-gradient)").skills__circle.skills__circle--above
                                 linearGradient(id='circle-gradient' )
                                   stop(offset="0%"  stop-color="#9200ef")
                                   stop(offset="100%" stop-color="#5500f2")
                             .skills__skill-title #{skill}
-            
+
             //- mobile bg image
             .skills__mobile-bg
               +image('backpack.jpg', 'skills__mobile-bg-image')
