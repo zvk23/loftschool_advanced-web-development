@@ -1,7 +1,7 @@
 .about {
-    padding: 0 250px;
 
     &__content-container {
+        padding: 0 250px;
         display: flex;
     }
 
@@ -97,21 +97,25 @@
 // 1200px
 @include desktop {
     .about {
-        padding: 0 90px 0 0;        
+        
+        &__content-container {
+            padding: 0 90px 0 0;        
+        }
     }
 }
 
 // 768px
 @include tablets {
     .about {
-        padding: 0;
+        &__content-container {
+            padding: 0;
+        }
     }
 }
 
 // 320px 
 @include phones {
     .about {
-
 
         &__content-container {
             flex-direction: column;
