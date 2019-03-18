@@ -1,7 +1,25 @@
 mixin icon(name, className)
   - var icon = require(`images/icons/${name}.svg`);
-  svg(class=className viewBox=icon.viewBox preserveAspectRatio="none")
+  svg(class=`${className} ${className}--${name}` viewBox=icon.viewBox preserveAspectRatio="none")
     use(xlink:href=icon.url)
 
 mixin image(path, className)
   img(src=require(`images/${path}`) class=className)
+
+mixin nav-list(listClass, itemClass, linkClass)
+  - var menuItems = ['Главная','Обо мне','Навыки','Работы','Отзывы','Связаться']
+      ul(class=`${listClass}`)
+        each item in menuItems 
+          li(class=`${itemClass}`)
+            a(href="#" class=`${linkClass}`, target="_blank")= item
+
+mixin social-list(listClass, itemClass, linkClass, iconClass)
+  - var socialList = {insta: {name: 'insta',href: 'https://instagram.com/vkthevk'}, vk: {name: 'vk',href: 'https://vk.com/zvikk'}, github: {name: 'github',href: 'https://github.com/zvikk'}}
+
+    ul(class=`${listClass}`)
+      each item in socialList
+        li(class=`${itemClass}`)
+          a(href=`${item.href}` class=`${linkClass}`, target="_blank")
+            +icon(`${item.name}`, `${iconClass}`)
+
+

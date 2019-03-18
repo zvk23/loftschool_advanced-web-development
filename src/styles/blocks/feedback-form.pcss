@@ -1,0 +1,113 @@
+.feedback-form {
+	display: flex;
+	align-items: flex-start;
+	flex-direction: column;
+
+	&__inputs-row {
+		display: flex;
+		align-items: center;
+		width: 100%;
+
+		&:nth-child(n + 2) {
+			margin-top: 40px;
+		}
+	}
+
+	&__input-block {
+		position: relative;
+		border-bottom: 1px solid #000;
+		padding: 45px 0 15px 0;
+		flex-grow: 1;
+
+		&:nth-child(n + 2) {
+			margin-left: 50px;
+		}
+
+		&--message {
+			padding: 30px 0 15px 0;
+
+			.feedback-form__input-icon {
+				top: 40px;
+			}
+		}
+	}
+
+	&__input {
+		border: none;
+		background: none;
+		width: 100%;
+		padding-left: 45px;
+		font-family: "OS-Bold";
+		font-size: 18px;
+		color: $text-color;
+
+		&::placeholder {
+			color: inherit;
+			transition: opacity 0.3s;
+		}
+
+		&:focus {
+			&::placeholder {
+				opacity: 0;
+			}
+		}
+
+		&--message {
+			width: 100%;
+			line-height: 36px;
+		}
+	}
+
+	&__input-label {
+		font-family: "OS-SemiBold";
+		font-size: 16px;
+		color: $gray-text;
+		display: block;
+		position: absolute;
+		left: 45px;
+		top: 0;
+	}
+
+	&__input-icon {
+		height: 30px;
+		position: absolute;
+		left: 0;
+		bottom: 15px;
+		pointer-events: none;
+		fill: #c5c8d2;
+		cursor: default;
+	}
+
+	&__button {
+		margin-top: 60px;
+	}
+}
+
+// 768px
+@include tablets {
+	.feedback-form {
+        align-items: center;
+
+		&__button {
+			margin-top: 30px;
+		}
+	}
+}
+
+// 320px
+@include phones {
+	.feedback-form {
+
+		&__inputs-row {
+			flex-direction: column;
+			align-items: stretch;
+		}	
+
+		&__input-block {
+
+			&:nth-child(n+2) {
+				margin: 40px 0 0 0;
+			}
+		}
+	}
+}

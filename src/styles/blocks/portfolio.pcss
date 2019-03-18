@@ -1,0 +1,20 @@
+.portfolio { 
+    display: flex;
+    flex-direction: column;
+
+    &__slider {
+        margin-top: 90px;
+        display: flex;
+        align-items: flex-start;
+    }
+}
+
+// 768px 
+@include tablets{
+    .portfolio {
+
+        &__slider {
+            margin-top: 65px;
+        }
+    }
+}

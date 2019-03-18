@@ -1,0 +1,40 @@
+-
+    var navItems = [
+        'Главная',
+        'Обо мне',
+        'Навыки',
+        'Работы',
+        'Отзывы',
+        'Связаться'
+    ]
+
+section.section.section--footer
+    .container.footer
+        .footer__side.footer__side--left
+            .footer__copyright &copy; 2019
+            .footer__info-block
+                .footer__info-title
+                    | Ефименко 
+                    br
+                    | Виктор
+                .footer__info-subtitle
+                    | Личный сайт
+                    br
+                    | Веб-разработчика
+        
+        .footer__side.footer__side--right
+            nav.footer__nav
+                .footer__nav-aligment-container
+                    +nav-list('footer__nav-list', 'footer__nav-item', 'footer__nav-link')
+            .footer__subcontainer
+                .footer__social-block
+                    span.footer__social-text
+                        | Этот сайт я&nbsp;сделал в&nbsp;рамках обучения в&nbsp;Школе онлайн образования Loftschool
+                    +social-list('footer__social-list', 'footer__social-item', 'footer__social-link', 'footer__social-icon')
+                
+                .footer__quote
+                    .footer__quote-text 
+                        | Всегда пишите код так, будто сопровождать его будет склонный к&nbsp;насилию психопат, который знает где вы&nbsp;живете
+                    .footer__quote-author
+                        | Martin Golding
+        
