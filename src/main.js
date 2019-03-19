@@ -5,6 +5,7 @@ if (process.env.NODE_ENV === "development") {
 
 import "./scripts/skills";
 import "./scripts/header";
+import "./scripts/parallax";
 
 let navBtn = document.querySelector('.header__nav-btn');
 

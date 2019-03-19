@@ -1,0 +1,85 @@
+.parralax-scene {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 1;
+
+	&__list {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+
+	&__item {
+		position: absolute;
+		width: 120%;
+		height: 120%;
+		left: -10%;
+		top: -10%;
+		background-size: cover;
+		background-repeat: no-repeat;
+
+		&--sky {
+			z-index: 1;
+			background-image: url(../images/parallax/sky.jpg);
+		}
+
+		&--mountain {
+			background-image: url(../images/parallax/mountain.png);
+            background-position: left 0 top 200px;
+			z-index: 2;
+		}
+
+		&--baloon {
+			background-image: url(../images/parallax/baloon.png);
+			background-size: auto;
+			background-position: 75% 35%;
+			z-index: 3;
+		}
+
+		&--cloud {
+			background-image: url(../images/parallax/cloud.png);
+			background-size: auto;
+			background-repeat: no-repeat;
+			background-position: 0 65%;
+            background-size: contain;
+			z-index: 4;
+		}
+
+        &--man {
+			background-image: url(../images/parallax/man.png);
+			background-size: auto;
+			background-repeat: no-repeat;
+			background-position: 0 90%;
+            background-size: auto;
+			z-index: 4;
+		}
+
+        &--mountain-second {
+			background-image: url(../images/parallax/mountain1.png);
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-position: 0 75%;
+			z-index: 5;
+		}
+
+         &--white {
+			background-image: url(../images/parallax/white.png);
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-position: left 0 bottom 0;
+			z-index: 5;
+		}
+	}
+}
+
+@include desktop {
+    .parralax-scene {
+        opacity: 0;
+        visibility: hidden;
+        appearance: none;
+    }
+}
