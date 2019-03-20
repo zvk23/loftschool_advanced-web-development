@@ -5,9 +5,20 @@ if (process.env.NODE_ENV === "development") {
 
 import "./scripts/skills";
 import "./scripts/header";
-import "./scripts/parallax";
+import parallax from "./scripts/parallax.js";
 
 let navBtn = document.querySelector('.header__nav-btn');
+let blocks = Array.prototype.slice.call(document.querySelectorAll(".js-parallax-item"));
+
+window.addEventListener('wheel', () => {
+  let scroll = window.pageYOffset;
+
+  blocks.forEach(block => {
+    let accel = block.dataset.speed;
+    
+    parallax.strafe(block, scroll, accel)
+  })
+})
 
 navBtn.addEventListener('click', function (e) {
   this.classList.toggle('is-active')

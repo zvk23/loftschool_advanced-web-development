@@ -1,21 +1,16 @@
-export default (e => {
-	let items = Array.prototype.slice.call(
-		document.querySelectorAll(".js-parallax-item")
-	);
+let parallax = (function () {
+	let strafe = (block, scroll, accel) => {
+		let 
+			strafe = `${scroll / accel}%`,
+			translateString = `translate(0, -${strafe}) translateZ(0)`,
+			style = block.style;
+		
+		style.transform = translateString;
+	}
 
-	window.addEventListener("wheel", e => {
-		items.forEach((item, i) => {
-			if (true) {
-				let 
-                    speed = item.dataset.speed,
-                    scrollTop = window.scrollY,
-                    currentPosY = window.getComputedStyle(item).top,
-                    deffAccel = .33,
-                    delta = scrollTop * speed * deffAccel,
-                    trs = `translate-y(${-delta}px)`;
-                
-                item.style.transform = `translate(0, ${-delta}px)`
-			}
-		});
-	});
+	return {
+		strafe: strafe 
+	}
 })();
+
+export default parallax;
