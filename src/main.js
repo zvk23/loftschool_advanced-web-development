@@ -7,20 +7,34 @@ import "./scripts/skills";
 import "./scripts/header";
 import parallax from "./scripts/parallax.js";
 
-let navBtn = document.querySelector(".header__nav-btn");
-let blocks = Array.prototype.slice.call(document.querySelectorAll(".js-parallax-item"));
+let 
+  navBtn = document.querySelector(".header__nav-btn"),
+  mainParallaxItems = Array.prototype.slice.call(document.querySelectorAll(".parralax-scene--main .js-parallax-item")),
+  buddaParallaxItems = Array.prototype.slice.call(document.querySelectorAll(".parralax-scene--budda .js-parallax-item")),
+  buddaOffset = document.querySelector('#budda-section').getBoundingClientRect().top,
+  buddaMargin = 160;
 
 window.addEventListener("wheel", () => {
 	let 
     scroll = window.pageYOffset;
 
 	if (scroll < window.innerHeight) {
-		blocks.forEach(block => {
+		mainParallaxItems.forEach(block => {
 			let accel = block.dataset.speed;
 
 			parallax.strafe(block, scroll, accel);
 		});
 	}
+
+  let buddaScroll = scroll - buddaOffset + buddaMargin;
+
+  if (buddaScroll > 0) {
+    buddaParallaxItems.forEach(block => {
+      let accel = block.dataset.speed;
+
+      parallax.strafe(block, buddaScroll, accel)
+    })
+  }
 });
 
 navBtn.addEventListener("click", function(e) {

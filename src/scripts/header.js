@@ -1,7 +1,10 @@
 export default (function changeHeader() {
-	let header = document.querySelector(".header");
+	let 
+		header = document.querySelector(".header"),
+		headerPos = header.getBoundingClientRect().top,
+		headerHeight = header.offsetHeight;
 
-	if (window.scrollY > 100) {
+	if (window.scrollY > headerPos + headerHeight) {
 		header.classList.add("is-fixed");
 	} else {
 		header.classList.remove("is-fixed");
