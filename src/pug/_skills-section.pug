@@ -23,8 +23,9 @@ section.section.section--skills
                           li.skills__item
                             .skill
                               svg(viewBox="0 0 200 200" preserveAspectRatio="none").skills__item-icon
-                                circle(fill="none" stroke-width="9" stroke="#eaeaea" r="90" cx="100" cy="100").skills__circle.skills__circle--under.js-skills-circle
-                                circle(fill="none" stroke-width="20" r="90" cx="100" cy="100" stroke="url(#circle-gradient)").skills__circle.skills__circle--above.js-skills-circle
+                                g.js-skill-circle
+                                  circle(fill="none" stroke-width="9" stroke="#eaeaea" r="90" cx="100" cy="100").skills__circle.skills__circle--under
+                                  circle(fill="none" stroke-width="20" r="90" cx="100" cy="100" stroke="url(#circle-gradient)").skills__circle.skills__circle--above
                                 linearGradient(id='circle-gradient' )
                                   stop(offset="0%"  stop-color="#9200ef")
                                   stop(offset="100%" stop-color="#5500f2")

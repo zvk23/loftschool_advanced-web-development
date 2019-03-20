@@ -6,6 +6,7 @@ if (process.env.NODE_ENV === "development") {
 import "./scripts/skills";
 import "./scripts/header";
 import parallax from "./scripts/parallax.js";
+import skillsAnimation from "./scripts/skillsAnimations.js";
 
 let 
   navBtn = document.querySelector(".header__nav-btn"),
@@ -16,8 +17,10 @@ let
 
 window.addEventListener("wheel", () => {
 	let 
-    scroll = window.pageYOffset;
+    scroll = window.pageYOffset,
+    buddaScroll = scroll - buddaOffset + buddaMargin;
 
+  // main parallax
 	if (scroll < window.innerHeight) {
 		mainParallaxItems.forEach(block => {
 			let accel = block.dataset.speed;
@@ -26,8 +29,10 @@ window.addEventListener("wheel", () => {
 		});
 	}
 
-  let buddaScroll = scroll - buddaOffset + buddaMargin;
+  // skilss animate
+  skillsAnimation.animate(scroll);
 
+  // budda parallax
   if (buddaScroll > 0) {
     buddaParallaxItems.forEach(block => {
       let accel = block.dataset.speed;
