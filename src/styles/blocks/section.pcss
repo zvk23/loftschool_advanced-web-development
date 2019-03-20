@@ -84,7 +84,7 @@
 }
 
 .main-parallax-wrapper {
-	background-image: url("../images/Mountain-Baloon.jpg");
+	// background-image: url("../images/Mountain-Baloon.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: top center;
@@ -119,14 +119,13 @@
 		border-color: transparent transparent #fff transparent;
 		z-index: 3;
 	}
-
-	section {
-		z-index: 2;
-	}
 }
 
 // 1200px
 @include desktop {
+	.main-parallax-wrapper {
+		background-image: url("../images/Mountain-Baloon.jpg");
+	}
 	.section {
 		&--skills {
 			.container {
