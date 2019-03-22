@@ -4,7 +4,7 @@ let skillsAnimation = (function() {
 		windowMargin = window.innerHeight,
 		svgRect = svgSection.getBoundingClientRect(),
 		svgPos = svgRect.top,
-		skillsItems = Array.prototype.slice.call(document.querySelectorAll(".js-skill-circle .skills__circle--above")),
+		skillsItems = document.querySelectorAll(".js-skill-circle .skills__circle--above"),
 		fuse = true;
 
 
@@ -12,17 +12,15 @@ let skillsAnimation = (function() {
 		animate: function(wScroll) {
 			let startAnimate = wScroll - svgPos + windowMargin;
 
-            console.log('startAnimate', startAnimate);
-
 			if (startAnimate > 0 && fuse) {
 				fuse = !fuse;
-                console.log('true', true);
 
-				skillsItems.forEach((skill, i) => {
-					let dashArray = window.getComputedStyle(skill).strokeDashoffset,
-						dashOffset = window.getComputedStyle(skill).strokeDashoffset,
-						neededOffset = parseInt(dashOffset),
-						currentOffset = 0;
+				skillsItems.forEach(skill => {
+						const neededOffset = parseInt(window.getComputedStyle(skill).strokeDashoffset);
+
+						let currentOffset = -1;
+
+						console.log('NeeedOffset', neededOffset);
 
 					skill.style.strokeDashoffset = currentOffset;
 

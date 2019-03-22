@@ -6,7 +6,6 @@ if (process.env.NODE_ENV === "development") {
 import "./scripts/skills";
 import "./scripts/header";
 import parallax from "./scripts/parallax.js";
-import skillsAnimation from "./scripts/skillsAnimations.js";
 
 let 
   navBtn = document.querySelector(".header__nav-btn"),
@@ -30,7 +29,7 @@ window.addEventListener("wheel", () => {
 	}
 
   // skilss animate
-  skillsAnimation.animate(scroll);
+  // skillsAnimation.animate(scroll);
 
   // budda parallax
   if (buddaScroll > 0) {
