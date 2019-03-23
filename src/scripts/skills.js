@@ -4,7 +4,21 @@ import Vue from 'vue'
 const skill = {
 	template: '#skill',
 	props: {
-		title: String
+		title: String,
+		percent: Number
+	},
+	methods: {
+		setColorCirclePercent() {
+			const 
+				ref = this.$refs['color-circle'],
+				dashArray = parseInt(getComputedStyle(ref).strokeDasharray),
+				dashOffset = ( dashArray / 100 ) * (100 - this.percent);
+
+			ref.style.strokeDashoffset = dashOffset;
+		}
+	},
+	mounted() {
+		this.setColorCirclePercent();
 	}
 }
 

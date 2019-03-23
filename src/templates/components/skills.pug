@@ -19,9 +19,9 @@ script(type="x/template")#skill
     .skill
         svg(viewBox="0 0 200 200" preserveAspectRatio="none").skills__item-icon
             g.js-skill-circle
-            circle(fill="none" stroke-width="9" stroke="#eaeaea" r="90" cx="100" cy="100").skills__circle.skills__circle--under
-            circle(fill="none" ref="color-circle" stroke-width="20" r="90" cx="100" cy="100" stroke="url(#circle-gradient)").skills__circle.skills__circle--above
-            linearGradient(id='circle-gradient' )
-            stop(offset="0%"  stop-color="#9200ef")
-            stop(offset="100%" stop-color="#5500f2")
+                circle(fill="none" stroke-width="9" stroke="#eaeaea" r="90" cx="100" cy="100").skills__circle.skills__circle--under
+                circle(fill="none" ref="color-circle" stroke-width="20" r="90" cx="100" cy="100" stroke="url(#circle-gradient)").skills__circle.skills__circle--above
+                linearGradient(id='circle-gradient' )
+                    stop(offset="0%"  stop-color="#9200ef")
+                    stop(offset="100%" stop-color="#5500f2")
         .skills__skill-title {{title}}
