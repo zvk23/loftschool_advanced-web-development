@@ -1,16 +1,14 @@
 let skillsAnimation = (function() {
-	let svgSection = document.querySelector("#skills-container"),
-		svgPaths = document.querySelectorAll(".js-skills-circle"),
+	let svgSection = document.querySelector(".skills-container"),
 		windowMargin = window.innerHeight,
-		svgRect = svgSection.getBoundingClientRect(),
-		svgPos = svgRect.top,
-		skillsItems = document.querySelectorAll(".js-skill-circle .skills__circle--above"),
+		svgPos = svgSection.getBoundingClientRect().top,
+		skillsItems = Array.prototype.slice.call(document.querySelectorAll(".js-skill-circle .skills__circle--above")),
 		fuse = true;
-
 
 	return {
 		animate: function(wScroll) {
 			let startAnimate = wScroll - svgPos + windowMargin;
+			
 
 			if (startAnimate > 0 && fuse) {
 				fuse = !fuse;

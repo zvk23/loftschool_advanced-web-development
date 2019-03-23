@@ -6,6 +6,7 @@ if (process.env.NODE_ENV === "development") {
 import "./scripts/skills";
 import "./scripts/header";
 import parallax from "./scripts/parallax.js";
+import skillsAnimation from "./scripts/skillsAnimations";
 
 let 
   navBtn = document.querySelector(".header__nav-btn"),
@@ -14,7 +15,7 @@ let
   buddaOffset = document.querySelector('#budda-section').getBoundingClientRect().top,
   buddaMargin = 160;
 
-window.addEventListener("wheel", () => {
+  window.addEventListener("wheel", () => {
 	let 
     scroll = window.pageYOffset,
     buddaScroll = scroll - buddaOffset + buddaMargin;
@@ -29,7 +30,7 @@ window.addEventListener("wheel", () => {
 	}
 
   // skilss animate
-  // skillsAnimation.animate(scroll);
+  skillsAnimation.animate(scroll);
 
   // budda parallax
   if (buddaScroll > 0) {
