@@ -18,8 +18,6 @@ let skillsAnimation = (function() {
 
 						let currentOffset = -1;
 
-						console.log('NeeedOffset', neededOffset);
-
 					skill.style.strokeDashoffset = currentOffset;
 
 						let anim = setInterval(() => {
