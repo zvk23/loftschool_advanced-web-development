@@ -4,6 +4,8 @@ script(type="x/template")#p-slider
         workSwitcher(
             :works="works"
             :currentWork="currentWork"
+            @changeSlide="changeSlide"
+            @previewClick="clickOnThumbs"
         )
         workInfo(
             :currentWork="currentWork"
@@ -16,32 +18,40 @@ script(type="x/template")#p-slider-switcher
             img(:src='currentWork.photo', 'p-slider__big-image')
 
         sliderThumbs(
-            :works="works"
+            :works="reversedWorks"
+            :currentWork="currentWork"
+            @previewClick="id => $emit('previewClick', id)"
         )
-        sliderControls
+        sliderControls(@changeSlide="direction => $emit('changeSlide', direction)")
         
 
 script(type="x/template")#p-slider-thumbs
     ul.p-slider__short-preview-list
-        li(class=`p-slider__short-preview-item`, v-for="item in works" :key="item.id")
+        li(
+            class=`p-slider__short-preview-item`, 
+            v-for="item in works" :key="item.id"
+            :class="{'is-active' : item.id == currentWork.id}"
+            @click="$emit('previewClick', item.id)"
+        )
             img(:src="item.photo", class="portfolio__slide-image")
 
 script(type="x/template")#p-slider-controls
     .p-slider__buttons-container
-        button.p-slider__change-bnt.p-slider__change-bnt--prev
+        button(@click="$emit('changeSlide', 'prev')").p-slider__change-bnt.p-slider__change-bnt--prev
             +icon('arrow-down', 'p-slider__change-bnt-icon')
-        button.p-slider__change-bnt.p-slider__change-bnt--next
+        button(@click="$emit('changeSlide', 'next')").p-slider__change-bnt.p-slider__change-bnt--next
             +icon('arrow-down', 'p-slider__change-bnt-icon')
 
 script(type="x/template")#p-slider-tags
     .p-slider__info-tags
             ul.p-slider__tags-list
-                    li.p-slider__tags-item
+                    li.p-slider__tags-item(v-for="tag in skills")
+                        | {{tag}}
 
 script(type="x/template")#p-slider-info
     .p-slider__info-block
         sliderTags(
-            :skills="currentWork.skills"
+            :skills="skillsArray"
         )
 
         .p-slider__info-title
