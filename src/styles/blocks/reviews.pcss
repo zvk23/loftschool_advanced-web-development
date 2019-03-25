@@ -48,24 +48,30 @@
 	&__slider {
 		margin-top: 115px;
 		width: 60%;
+		display: flex; 
 	}
 
 	&__slider-list {
 		display: flex;
 		align-items: flex-start;
 		flex-grow: 1;
+		width: 100%;
+
+		.flickity-viewport {
+			width: 100%;
+		}
 	}
 
 	&__slider-item {
 		display: flex;
 		flex-direction: column;
-		width: 475px;
+		width: 50%;
 		padding-left: 125px;
 		position: relative;
 		flex-shrink: 0;
 
 		&:nth-child(n + 2) {
-			margin-left: 50px;
+			// margin-left: 50px;
 		}
 	}
 

@@ -5,18 +5,18 @@ export default (function changeHeader() {
 		headerHeight = header.offsetHeight;
 
 	if (window.scrollY > headerPos + headerHeight) {
-		header.classList.add("is-fixed");
+		document.body.classList.add("is-fixed-header");
 	} else {
-		header.classList.remove("is-fixed");
+		document.body.classList.remove("is-fixed-header");
 	}
 
 	window.addEventListener("wheel", e => {
 		let offset = window.scrollY;
 
 		if (offset > 100) {
-			header.classList.add("is-fixed");
+			document.body.classList.add("is-fixed-header");
 		} else {
-			header.classList.remove("is-fixed");
+			document.body.classList.remove("is-fixed-header");
 		}
 	});
 })();

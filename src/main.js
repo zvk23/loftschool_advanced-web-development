@@ -6,8 +6,12 @@ if (process.env.NODE_ENV === "development") {
 import "./scripts/header";
 import "./scripts/skills";
 import "./scripts/portfolio-slider";
+import "./scripts/feedback-slider";
+import menuScript from "./scripts/toggleNavPopup";
 import parallax from "./scripts/parallax.js";
 import skillsAnimation from "./scripts/skillsAnimations";
+
+menuScript.init();
 
 let 
   navBtn = document.querySelector(".header__nav-btn"),
@@ -42,8 +46,4 @@ let
       parallax.strafe(block, buddaScroll, accel)
     })
   }
-});
-
-navBtn.addEventListener("click", function(e) {
-	this.classList.toggle("is-active");
 });
