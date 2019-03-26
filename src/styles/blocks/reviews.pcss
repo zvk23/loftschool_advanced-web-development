@@ -1,7 +1,4 @@
 .reviews {
-	display: flex;
-	flex-direction: column;
-
 	&__header {
 		display: flex;
 		align-items: center;
@@ -46,20 +43,11 @@
 	}
 
 	&__slider {
-		margin-top: 115px;
-		width: 60%;
-		display: flex; 
+		overflow: hidden;
+		margin-top: 110px;
 	}
 
 	&__slider-list {
-		display: flex;
-		align-items: flex-start;
-		flex-grow: 1;
-		width: 100%;
-
-		.flickity-viewport {
-			width: 100%;
-		}
 	}
 
 	&__slider-item {
@@ -67,62 +55,51 @@
 		flex-direction: column;
 		width: 50%;
 		padding-left: 125px;
-		position: relative;
-		flex-shrink: 0;
-
-		&:nth-child(n + 2) {
-			// margin-left: 50px;
-		}
 	}
 
 	&__quote {
 		position: absolute;
-		left: 20px;
 		top: 0;
+		left: 0;
 	}
 
 	&__quote-icon {
-		width: 73px;
+		width: 100px;
 		fill: #dbe2ed;
 	}
 
 	&__slide-comment {
-		font-family: "OS-Bold";
+		font-family: 'OS-Bold';
 		font-size: 16px;
-		color: $gray-text;
-		line-height: 30px;
+    	color: #b2b9c1;
+    	line-height: 30px;
 	}
 
 	&__commentator {
-		margin-top: 30px;
 		display: flex;
-		align-items: center;
+		align-items: flex-start;
 	}
 
 	&__commentator-image {
-		width: 76px;
-		height: 76px;
+		width: 70px;
+		height: 70px;
 		border-radius: 50%;
-		overflow: hidden;
-		flex-shrink: 0;
 	}
 
 	&__commentator-info {
-		margin-left: 30px;
+		margin-left: 15px;	
 	}
 
 	&__commentator-name {
-		font-family: "OS-Bold";
 		font-size: 18px;
 		color: $text-color;
-		line-height: 1;
 	}
 
 	&__commentator-position {
-		font-family: "OS-SemiBold";
-		font-size: 16px;
-		color: $gray-text;
-		padding-top: 25px;
+		font-family: 'OS-SemiBold';
+		font-size: 1rem;
+		color: #b2b9c1;
+		padding-top: 1.5625rem;
 		line-height: 1;
 	}
 }
@@ -130,59 +107,38 @@
 // 768px
 @include tablets {
 	.reviews {
-		&__slider {
-			width: auto;
-			justify-content: space-between;
-			margin-top: 80px;
-		}
-
-		&__quote {
-			display: none;
-		}
-
-		&__slider-item {
-			padding-left: 40px;
-			width: 50%;
-
-			&:nth-child(n + 2) {
-				margin: 0;
-			}
-		}
-
-		&__slide-comment {
-			font-size: 14px;
-		}
 	}
 }
 
 // 320px
 @include phones {
 	.reviews {
+
 		&__header {
 			flex-direction: column;
 			align-items: center;
-
-			.section-title {
-				font-size: 24px;
-			}
-		}
-
-		&__slide-switcher {
-			margin: 35px 0 0 0;
 		}
 
 		&__slider {
-			margin-top: 35px;
-			overflow: hidden;
+			margin-top: 30px;
+		}
+
+		&__slide-switcher {
+			margin-left: 0;
+			margin-top: 30px;
 		}
 
 		&__slider-item {
 			width: 100%;
-			padding: 0;
+			padding-left: 0;
 		}
 
-		&__commentator-position {
-			padding-top: 15px;
+		&__quote {
+			display: none;
+		}
+
+		&__commentator {
+			margin-top: 25px;
 		}
 	}
 }
