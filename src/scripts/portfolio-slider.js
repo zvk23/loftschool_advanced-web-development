@@ -74,7 +74,6 @@ const workInfo = {
         }
     },
     created() {
-        console.log(this.skillsArray);
     }
 }
 

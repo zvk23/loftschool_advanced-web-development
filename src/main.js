@@ -7,11 +7,15 @@ import "./scripts/header";
 import "./scripts/skills";
 import "./scripts/portfolio-slider";
 import "./scripts/feedback-slider";
+import anchorsLinks from "./scripts/anchorLinks";
 import menuScript from "./scripts/toggleNavPopup";
 import parallax from "./scripts/parallax.js";
 import skillsAnimation from "./scripts/skillsAnimations";
 
-menuScript.init();
+window.addEventListener('load', () => {
+  menuScript.init();
+  anchorsLinks.init();
+})
 
 let 
   navBtn = document.querySelector(".header__nav-btn"),

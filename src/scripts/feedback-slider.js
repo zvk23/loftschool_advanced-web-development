@@ -13,7 +13,8 @@ new Vue({
 				prevNextButtons: false,
 				pageDots: false,
                 draggable: false,
-                cellClass: '.reviews__slider-item'
+                cellClass: '.reviews__slider-item',
+				groupCells: 2
 			}
 		};
 	},

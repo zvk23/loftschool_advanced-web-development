@@ -10,7 +10,7 @@ export default (function changeHeader() {
 		document.body.classList.remove("is-fixed-header");
 	}
 
-	window.addEventListener("wheel", e => {
+	window.addEventListener("scroll", e => {
 		let offset = window.scrollY;
 
 		if (offset > 100) {
