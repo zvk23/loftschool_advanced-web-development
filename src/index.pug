@@ -11,6 +11,7 @@ html(lang="en")
   body
     .wrapper
       include pug/_header.pug
+      include pug/_parallax-main.pug
       .main-parallax-wrapper
         include pug/_main-section.pug
       include pug/_skills-section.pug
@@ -21,3 +22,7 @@ html(lang="en")
       //- no content
       include pug/_mobile-navigation.pug
       include pug/_modal.pug
+      include pug/_nav-btn.pug
+
+      //- Vue components
+      include templates/entry.pug

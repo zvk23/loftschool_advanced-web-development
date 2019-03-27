@@ -1,0 +1,66 @@
+script(type="x/template")#p-slider
+    .p-slider
+        //- pre {{data}}
+        workSwitcher(
+            :works="works"
+            :currentWork="currentWork"
+            @changeSlide="changeSlide"
+            @previewClick="clickOnThumbs"
+        )
+        workInfo(
+            :currentWork="currentWork"
+        )
+
+script(type="x/template")#p-slider-switcher
+    .p-slider__works-switcher
+        .p-slider__work-number#work-number {{currentWork.id}}
+        .p-slider__big-preview
+            img(:src='currentWork.photo', 'p-slider__big-image')
+
+        sliderThumbs(
+            :works="reversedWorks"
+            :currentWork="currentWork"
+            @previewClick="id => $emit('previewClick', id)"
+        )
+        sliderControls(@changeSlide="direction => $emit('changeSlide', direction)")
+        
+
+script(type="x/template")#p-slider-thumbs
+    ul.p-slider__short-preview-list
+        li(
+            class=`p-slider__short-preview-item`, 
+            v-for="item in works" :key="item.id"
+            :class="{'is-active' : item.id == currentWork.id}"
+            @click="$emit('previewClick', item.id)"
+        )
+            img(:src="item.photo", class="portfolio__slide-image")
+
+script(type="x/template")#p-slider-controls
+    .p-slider__buttons-container
+        button(@click="$emit('changeSlide', 'prev')").p-slider__change-bnt.p-slider__change-bnt--prev
+            +icon('arrow-down', 'p-slider__change-bnt-icon')
+        button(@click="$emit('changeSlide', 'next')").p-slider__change-bnt.p-slider__change-bnt--next
+            +icon('arrow-down', 'p-slider__change-bnt-icon')
+
+script(type="x/template")#p-slider-tags
+    .p-slider__info-tags
+            ul.p-slider__tags-list
+                    li.p-slider__tags-item(v-for="tag in skills")
+                        | {{tag}}
+
+script(type="x/template")#p-slider-info
+    .p-slider__info-block
+        sliderTags(
+            :skills="skillsArray"
+        )
+
+        .p-slider__info-title
+            h3.p-slider__work-title {{currentWork.title}}
+        
+        .p-slider__info-description
+            | {{currentWork.desc}}
+        
+        .p-slider__info-link
+            a(:href="currentWork.link", target="_blank").p-slider__work-link
+                +icon('link', 'p-slider__link-icon')
+                | Посетить сайт

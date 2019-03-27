@@ -1,0 +1,60 @@
+script(type="x/template")#feedback-slider
+    .reviews
+        .reviews__header
+            h3.section-title Что обо мне говорят
+            .reviews__slide-switcher
+                button.reviews__slider-btn.reviews__slider-btn--prev(@click="previous")
+                    +icon('arrow-down', 'reviews__slider-btn-icon')
+                button.reviews__slider-btn.reviews__slider-btn--next(@click="next")
+                    +icon('arrow-down', 'reviews__slider-btn-icon')
+
+        .reviews__slider
+            Flickity(class="reviews__slider-list", ref="flickity", :options="flickityOptions")
+                div.reviews__slider-item
+                    .reviews__quote
+                        +icon('quote', 'reviews__quote-icon')
+                    .reviews__slide-comment
+                        | Этот парень проходил обучение веб-разработке не&nbsp;где-то, а&nbsp;в&nbsp;LoftSchool! 
+                        | 4,5 месяца только самых тяжелых испытаний и&nbsp;бессонных ночей!
+                    .reviews__commentator
+                        .reviews__commentator-image
+                            +image('content/dima.jpg', 'reviews__commentator-image')
+                        .reviews__commentator-info
+                            .reviews__commentator-name Ковальчук Дмитрий
+                            .reviews__commentator-position Основатель LoftSchool
+                div.reviews__slider-item
+                    .reviews__quote
+                        +icon('quote', 'reviews__quote-icon')
+                    .reviews__slide-comment
+                        | Этот парень проходил обучение веб-разработке не&nbsp;где-то, а&nbsp;в&nbsp;LoftSchool! 
+                        | 4,5 месяца только самых тяжелых испытаний и&nbsp;бессонных ночей!
+                    .reviews__commentator
+                        .reviews__commentator-image
+                            +image('content/vova.jpg', 'reviews__commentator-image')
+                        .reviews__commentator-info
+                            .reviews__commentator-name Сабанцев Владимир
+                            .reviews__commentator-position Преподователь
+                div.reviews__slider-item
+                    .reviews__quote
+                        +icon('quote', 'reviews__quote-icon')
+                    .reviews__slide-comment
+                        | Этот парень проходил обучение веб-разработке не&nbsp;где-то, а&nbsp;в&nbsp;LoftSchool! 
+                        | 4,5 месяца только самых тяжелых испытаний и&nbsp;бессонных ночей!
+                    .reviews__commentator
+                        .reviews__commentator-image
+                            +image('content/vova.jpg', 'reviews__commentator-image')
+                        .reviews__commentator-info
+                            .reviews__commentator-name Сабанцев Владимир
+                            .reviews__commentator-position Преподователь
+                div.reviews__slider-item
+                    .reviews__quote
+                        +icon('quote', 'reviews__quote-icon')
+                    .reviews__slide-comment
+                        | Этот парень проходил обучение веб-разработке не&nbsp;где-то, а&nbsp;в&nbsp;LoftSchool! 
+                        | 4,5 месяца только самых тяжелых испытаний и&nbsp;бессонных ночей!
+                    .reviews__commentator
+                        .reviews__commentator-image
+                            +image('content/vova.jpg', 'reviews__commentator-image')
+                        .reviews__commentator-info
+                            .reviews__commentator-name Сабанцев Владимир
+                            .reviews__commentator-position Преподователь

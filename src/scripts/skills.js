@@ -1,20 +1,51 @@
-function randomValue() {
-	let skills = Array.prototype.slice.call(
-			document.querySelectorAll(".skill")
-		),
-		skillLenght = skills.length;
+import Vue from 'vue'
 
-	function getRandomInt(min, max, notZero) {
-		const randomInt = Math.floor(Math.random() * (max - min + 1)) + min;
-		return notZero && randomInt == 0 ? 1 : randomInt;
+
+const skill = {
+	template: '#skill',
+	props: {
+		title: String,
+		percent: Number
+	},
+	methods: {
+		setColorCirclePercent() {
+			const 
+				ref = this.$refs['color-circle'],
+				dashArray = parseInt(getComputedStyle(ref).strokeDasharray),
+				dashOffset = ( dashArray / 100 ) * (100 - this.percent);
+
+			ref.style.strokeDashoffset = dashOffset;
+		}
+	},
+	mounted() {
+		this.setColorCirclePercent();
 	}
-
-	skills.forEach(function(item) {
-		let circle = item.querySelector(".skills__circle--above"),
-			randomValue = getRandomInt(0, 565, true);
-        
-        circle.setAttribute('stroke-dashoffset', randomValue)
-	});
 }
 
-randomValue();
+const skillRow = {
+	template: '#skills-row',
+	components: {
+		skill
+	},
+	props: {
+		skills: Object
+	}
+}
+
+new Vue({
+	el: '#skills-container',
+	template: '#skills-block',
+	components: {
+		skillRow
+	},
+	data() {
+		return {
+			data: []
+		}
+	},
+	created() {
+		const data = require('../data/skills.json');
+
+		this.data = data
+	}
+})

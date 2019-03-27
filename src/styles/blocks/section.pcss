@@ -1,5 +1,6 @@
 .section {
 	min-height: 100vh;
+	position: relative;
 
 	&--about {
 		display: flex;
@@ -83,7 +84,7 @@
 }
 
 .main-parallax-wrapper {
-	background-image: url("../images/Mountain-Baloon.jpg");
+	// background-image: url("../images/Mountain-Baloon.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: top center;
@@ -101,7 +102,7 @@
 		border-style: solid;
 		border-width: 90px 0 0 50vw;
 		border-color: transparent transparent transparent #fff;
-		z-index: 1;
+		z-index: 3;
 	}
 
 	&:after {
@@ -116,12 +117,15 @@
 		border-style: solid;
 		border-width: 0 0 90px 50vw;
 		border-color: transparent transparent #fff transparent;
-		z-index: 1;
+		z-index: 3;
 	}
 }
 
 // 1200px
 @include desktop {
+	.main-parallax-wrapper {
+		background-image: url("../images/Mountain-Baloon.jpg");
+	}
 	.section {
 		&--skills {
 			.container {

@@ -1,40 +1,21 @@
-section.section.section--feedback.section--budda
+section.section.section--feedback.section--budda#budda-section(data-anchor-section="feedback-anchor")
+    ul.parralax-scene.parralax-scene--budda
+        li(data-speed="100").parralax-scene__item
+            +image('parallax/budda/2.png', 'parralax-scene__item-image')
+        li(data-speed="100").parralax-scene__item
+            +image('parallax/budda/3.png', 'parralax-scene__item-image')
+        li(data-speed="70").parralax-scene__item.js-parallax-item
+            +image('parallax/budda/4.png', 'parralax-scene__item-image')
+        li(data-speed="30").parralax-scene__item.js-parallax-item
+            +image('parallax/budda/5.png', 'parralax-scene__item-image')
+        li(data-speed="20").parralax-scene__item.js-parallax-item
+            +image('parallax/budda/5.png', 'parralax-scene__item-image')
+        li(data-speed="10").parralax-scene__item.js-parallax-item
+            +image('parallax/budda/5.png', 'parralax-scene__item-image')
+
     .container.feedback
-        .feedback__review-slider
-            .reviews
-                .reviews__header
-                    h3.section-title Что обо мне говорят
-                    .reviews__slide-switcher
-                        button.reviews__slider-btn.reviews__slider-btn--prev
-                            +icon('arrow-down', 'reviews__slider-btn-icon')
-                        button.reviews__slider-btn.reviews__slider-btn--next
-                            +icon('arrow-down', 'reviews__slider-btn-icon')
-                .reviews__slider
-                    ul.reviews__slider-list
-                        li.reviews__slider-item
-                            .reviews__quote
-                                +icon('quote', 'reviews__quote-icon')
-                            .reviews__slide-comment
-                                | Этот парень проходил обучение веб-разработке не&nbsp;где-то, а&nbsp;в&nbsp;LoftSchool! 
-                                | 4,5 месяца только самых тяжелых испытаний и&nbsp;бессонных ночей!
-                            .reviews__commentator
-                                .reviews__commentator-image
-                                    +image('content/dima.jpg', 'reviews__commentator-image')
-                                .reviews__commentator-info
-                                    .reviews__commentator-name Ковальчук Дмитрий
-                                    .reviews__commentator-position Основатель LoftSchool
-                        li.reviews__slider-item
-                            .reviews__quote
-                                +icon('quote', 'reviews__quote-icon')
-                            .reviews__slide-comment
-                                | Этот парень проходил обучение веб-разработке не&nbsp;где-то, а&nbsp;в&nbsp;LoftSchool! 
-                                | 4,5 месяца только самых тяжелых испытаний и&nbsp;бессонных ночей!
-                            .reviews__commentator
-                                .reviews__commentator-image
-                                    +image('content/vova.jpg', 'reviews__commentator-image')
-                                .reviews__commentator-info
-                                    .reviews__commentator-name Сабанцев Владимир
-                                    .reviews__commentator-position Преподователь
+        .feedback__review-slider#feed-slider
+        
 
         //- form
         .feedback__form-container

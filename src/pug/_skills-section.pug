@@ -1,4 +1,4 @@
-section.section.section--skills
+section.section.section--skills(data-anchor-section="skills-anchor")
         .container.skills-container
           .skills
             .skills__header
@@ -6,29 +6,7 @@ section.section.section--skills
               span.section-title__subtitle
                 | Этот сайт я&nbsp;сделал в&nbsp;рамках обучения в&nbsp;Школе онлайн образования LoftSchool. 
                 | Чуть позже я&nbsp;освежу в&nbsp;нём свой контент. А&nbsp;пока посмотрите, как тут всё классно и&nbsp;красиво!
-            .skills__skills-container
-              .skills__skills-block
-                ul.skills__skills-list
-                  -
-                    var skills = [
-                      ['Frontend', ['HTML5', 'CSS3', 'Javascript', 'jQuery & Vue.js']],
-                      ['Workflow', ['GIT', 'Terminal' , 'Gulp', 'Webpack']],
-                    ]
-
-                  each item in skills
-                    li.skills__skills-item
-                      h3.skills__block-title #{item[0]}
-                      ul.skills__skills-row
-                        each skill in item[1]
-                          li.skills__item
-                            .skill
-                              svg(viewBox="0 0 200 200" preserveAspectRatio="none").skills__item-icon
-                                circle(fill="none" stroke-width="9" stroke="#eaeaea" r="90" cx="100" cy="100").skills__circle.skills__circle--ibnder
-                                circle(fill="none" stroke-width="20" r="90" cx="100" cy="100" stroke="url(#circle-gradient)").skills__circle.skills__circle--above
-                                linearGradient(id='circle-gradient' )
-                                  stop(offset="0%"  stop-color="#9200ef")
-                                  stop(offset="100%" stop-color="#5500f2")
-                            .skills__skill-title #{skill}
+            .skills__skills-container#skills-container
 
             //- mobile bg image
             .skills__mobile-bg

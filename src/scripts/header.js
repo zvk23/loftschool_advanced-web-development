@@ -1,19 +1,22 @@
 export default (function changeHeader() {
-	let header = document.querySelector(".header");
+	let 
+		header = document.querySelector(".header"),
+		headerPos = header.getBoundingClientRect().top,
+		headerHeight = header.offsetHeight;
 
-	if (window.scrollY > 100) {
-		header.classList.add("is-fixed");
+	if (window.scrollY > headerPos + headerHeight) {
+		document.body.classList.add("is-fixed-header");
 	} else {
-		header.classList.remove("is-fixed");
+		document.body.classList.remove("is-fixed-header");
 	}
 
-	window.addEventListener("wheel", e => {
+	window.addEventListener("scroll", e => {
 		let offset = window.scrollY;
 
 		if (offset > 100) {
-			header.classList.add("is-fixed");
+			document.body.classList.add("is-fixed-header");
 		} else {
-			header.classList.remove("is-fixed");
+			document.body.classList.remove("is-fixed-header");
 		}
 	});
 })();
