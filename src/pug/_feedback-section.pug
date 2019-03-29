@@ -26,17 +26,17 @@ section.section.section--feedback.section--budda#budda-section(data-anchor-secti
                         label.feedback-form__input-label(for="name") 
                             | Введите ваше имя
                         +icon('user','feedback-form__input-icon')
-                        input#name.feedback-form__input.feedback-form__input--short(type="text", placeholder="Ковальчук Дмитрий")
+                        input#name.feedback-form__input.feedback-form__input--short.js-form-input(type="text", placeholder="Ковальчук Дмитрий")
                     .feedback-form__input-block
                         label.feedback-form__input-label(for="email") 
                             | Введите ваш e-mail
                         +icon('envelope','feedback-form__input-icon')
-                        input#email.feedback-form__input.feedback-form__input--short(type="text", placeholder="loftschool@study.com")
+                        input#email.feedback-form__input.feedback-form__input--short.js-form-input(type="text", placeholder="loftschool@study.com")
                 
                 .feedback-form__inputs-row
                     .feedback-form__input-block.feedback-form__input-block--message
                         label.feedback-form__input-label(for="feedback-message") 
                             | Сообщение к письму
                         +icon('message','feedback-form__input-icon')
-                        textarea#feedback-message.feedback-form__input.feedback-form__input--message(name="feedback-message", placeholder="Требуется ваша помощь в создании сайта.Интересуют сроки и цена вопроса")
+                        textarea#feedback-message.feedback-form__input.feedback-form__input--message.js-form-input(name="feedback-message", placeholder="Требуется ваша помощь в создании сайта.Интересуют сроки и цена вопроса")
                 button(type="submit").button.button--gradient.feedback-form__button Отправить
