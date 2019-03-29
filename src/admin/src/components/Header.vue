@@ -8,7 +8,7 @@
                     .header__user-name Виктор Ефименко
                     a.header__controls-link.header__controls-link--desktop-hidden Выйти
 
-            .header__title Панель Администрирования
+            .header__title {{title}}
 
             .header__controls-block
                 a.header__controls-link.header__controls-link--desktop-visible Выйти
@@ -16,6 +16,9 @@
 
 <script>
 export default {
+    props: {
+        title: String
+    }
 }
 </script>
 
