@@ -54,7 +54,6 @@
                             .card__add-icon
                             span.card__add-icon-text
                                 | Добавить
-                                br
                                 | Работу
 
 

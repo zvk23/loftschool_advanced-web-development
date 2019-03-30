@@ -45,6 +45,7 @@ export default {
   @import "../styles/admin/works.pcss";
   @import "../styles/admin/add-work.pcss";
   @import "../styles/admin/btn.pcss";
+  @import "../styles/admin/setup-skills.pcss";
 
   .app__route-info {
     margin: 55px 0;

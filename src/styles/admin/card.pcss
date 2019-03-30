@@ -8,8 +8,6 @@
 	flex-direction: column;
 
 	&--skill {
-		margin: 0 0 30px 30px;
-		max-width: calc(50% - 30px);
 	}
 
 	&--gradient {
@@ -64,9 +62,18 @@
 		padding-bottom: 15px;
 		border-bottom: 1px solid transparent;
 		transition: border-color .3s;
+		max-width: 100%;
+
+		&::placeholder {
+			transition: opacity .3s;
+		}
 
 		&:focus {
 			border-color:#000;
+
+			&::placeholder {
+				opacity: 0;
+			}
 		}
 
 		&--header {
@@ -276,6 +283,20 @@
 
 		&__footer {
 			justify-content: center;
+		}
+	}
+}
+
+@include phones {
+	.card {
+
+		&--new-work {
+			flex-direction: row;
+		}
+
+		&__add-icon-text {
+			margin-top: 0;
+			margin-left: 20px;
 		}
 	}
 }
