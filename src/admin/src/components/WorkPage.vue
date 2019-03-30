@@ -1,6 +1,6 @@
 <template lang="pug">
-    section.work
-        .container.work__container
+    section.works
+        .container.works__container
             .card.card--add-work
                 .card__header
                     h3.card__header__title Редактирование работы
@@ -45,6 +45,81 @@
                     .card__footer-btn
                         button.btn.btn--gradient
                          | Сохранить
+             
+            
+            .works__works-container 
+                ul.works__works-list
+                    li.works__work-item
+                        .card.card--gradient.card--new-work
+                            .card__add-icon
+                            span.card__add-icon-text
+                                | Добавить
+                                br
+                                | Работу
+
+
+                    li.works__work-item
+                        .card.card--work-item
+                            .card__header
+                                .card__work-image
+
+                            .card__body
+                                .card__work-title Название работы
+
+                                .card__work-desc 
+                                    |Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
+                                
+                                .card__work-link-container
+                                    a(href="").card__work-link https://loftschool.com
+                            .card__footer
+                                .card__footer-btn
+                                    button.btn.btn--change Изменить
+                                
+                                .card__footer-btn
+                                    button.btn.btn--delete Удалить
+                    
+                    li.works__work-item
+                        .card.card--work-item
+                            .card__header
+                                .card__work-image
+
+                            .card__body
+                                .card__work-title Название работы
+
+                                .card__work-desc 
+                                    |Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
+                                
+                                .card__work-link-container
+                                    a(href="").card__work-link https://loftschool.com
+                            .card__footer
+                                .card__footer-btn
+                                    button.btn.btn--change Изменить
+                                
+                                .card__footer-btn
+                                    button.btn.btn--delete Удалить
+                    
+                    li.works__work-item
+                        .card.card--work-item
+                            .card__header
+                                .card__work-image
+
+                            .card__body
+                                .card__work-title Название работы
+
+                                .card__work-desc 
+                                    |Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
+                                
+                                .card__work-link-container
+                                    a(href="").card__work-link https://loftschool.com
+                            .card__footer
+                                .card__footer-btn
+                                    button.btn.btn--change Изменить
+                                
+                                .card__footer-btn
+                                    button.btn.btn--delete Удалить
+
+
+                    
 
 </template>
 

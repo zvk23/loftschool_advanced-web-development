@@ -42,12 +42,32 @@ export default {
   @import "../styles/layout/base.pcss";
   @import "../styles/blocks/admin.pcss";
   @import "../styles/admin/card.pcss";
-  @import "../styles/admin/work.pcss";
+  @import "../styles/admin/works.pcss";
   @import "../styles/admin/add-work.pcss";
   @import "../styles/admin/btn.pcss";
 
   .app__route-info {
     margin: 55px 0;
+  }
+
+  .admin {
+    position: relative;
+    padding-bottom: 50px;
+
+    &:before {
+      display: block;
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background-image: url('../images/Mountain-Baloon.jpg');
+      background-size: cover;
+      background-position: botom;
+      z-index: -1;
+      opacity: 0.2;
+    }
   }
 </style>
 

@@ -8,7 +8,7 @@
 
     &--gradient {
         display: inline-block;
-        background-image: linear-gradient(to right, #1558e2 0%, #3f35cb 100%);
+        background-image: linear-gradient(to right, #135ae3 0%, #3f35cb 100%);
         color: #ffffff;
         text-transform: uppercase;
         height: 60px;
@@ -21,5 +21,24 @@
     &--cancel {
         color: #383bcf;
         font-weight: 600;
+    }
+
+    &--change,
+    &--delete {
+        color: #a0a5b1;
+        padding-right: 32px;
+        font-weight: 600;
+        position: relative;
+
+        &:before {
+            display: block;
+            content: '';
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            top: 50%;
+            right: 5px;
+            margin-top: -10px;
+        }
     }
 }

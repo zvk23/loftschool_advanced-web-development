@@ -19,6 +19,7 @@ export default (() => {
         } else {
             let xhr = new XMLHttpRequest;
             console.log('xhr', xhr);
+            form.submit()
         }
     }
 

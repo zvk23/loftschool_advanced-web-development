@@ -1,0 +1,63 @@
+.works {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    &__works-container  {
+        margin-top: 35px;
+    }
+
+    &__works-list {
+        display: flex;
+        align-items: stretch;
+        margin-top: -30px;
+        flex-flow: row wrap;
+    }
+
+    &__work-item {
+        display: flex;
+        align-items: stretch;
+        width: 30%;
+        margin: 30px 30px 0 0;
+        flex-shrink: 0;
+    }
+
+    &__add-work-btn {
+       flex-grow: 1;
+       display: flex;
+       align-items: stretch;
+    }
+}
+
+@include tablets {
+    .works {
+
+        &__works-list {
+            justify-content: space-between;
+        }
+
+        &__work-item {
+            width: calc(50% - 15px);
+            margin: 0 0 30px 0;
+        }
+    }
+}
+
+@include phones {
+    .works {
+
+        &__container {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        &__works-list {
+            align-items: center;
+        }
+
+        &__work-item {
+            width: 100%;
+            margin: 0 0 10px 0;
+        }
+    }
+}
