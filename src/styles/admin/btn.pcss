@@ -1,0 +1,25 @@
+.btn {
+    cursor: pointer;
+    transition: opacity .3s;
+        
+    &:hover {
+        opacity: 0.8;
+    }
+
+    &--gradient {
+        display: inline-block;
+        background-image: linear-gradient(to right, #1558e2 0%, #3f35cb 100%);
+        color: #ffffff;
+        text-transform: uppercase;
+        height: 60px;
+        line-height: 60px;
+        padding: 0 40px;
+        font-weight: 700;
+        border-radius: 30px;
+    }
+
+    &--cancel {
+        color: #383bcf;
+        font-weight: 600;
+    }
+}

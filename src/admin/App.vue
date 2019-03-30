@@ -13,6 +13,8 @@
     
     main.admin__main-container
       AboutPage
+
+      WorkPage
 </template>
 
 <script>
@@ -20,13 +22,15 @@ import Header from './src/components/Header'
 import Tabs from './src/components/Tabs'
 import Route from './src/components/Route'
 import AboutPage from './src/components/SetupSkills'
+import WorkPage from './src/components/WorkPage'
 
 export default {
   components: {
     Header,
     Tabs,
     AboutPage,
-    Route
+    Route,
+    WorkPage
   }
 }
 </script>
@@ -38,6 +42,9 @@ export default {
   @import "../styles/layout/base.pcss";
   @import "../styles/blocks/admin.pcss";
   @import "../styles/admin/card.pcss";
+  @import "../styles/admin/work.pcss";
+  @import "../styles/admin/add-work.pcss";
+  @import "../styles/admin/btn.pcss";
 
   .app__route-info {
     margin: 55px 0;
