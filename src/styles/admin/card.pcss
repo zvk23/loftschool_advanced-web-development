@@ -52,91 +52,12 @@
 		border-bottom: 1px solid #dedee0;
 	}
 
-	&__input {
-		background: none;
-		border: none;
+	&__header-title {
 		font-weight: 600;
-		font-size: 18px;
-		color: rgba(#414c63, 0.5);
-		position: relative;
-		padding-bottom: 15px;
-		border-bottom: 1px solid transparent;
-		transition: border-color .3s;
-		max-width: 100%;
-
-		&::placeholder {
-			transition: opacity .3s;
-		}
-
-		&:focus {
-			border-color:#000;
-
-			&::placeholder {
-				opacity: 0;
-			}
-		}
-
-		&--header {
-			width: 70%;
-			padding-bottom: 15px;
-			border-bottom: 1px solid #000;
-		}
-
-		&--percent {
-			width: 60px;
-		}
-
-		&--skill-footer {
-			border-bottom: 1px solid #000;
-		}
-
-		&--border {
-			border-bottom: 1px solid #000;
-		}
 	}
 
 	&__body {
 		padding: 30px 8px 0 8px;
-	}
-
-	// skill card
-
-	&__skill-item {
-		display: flex;
-		align-items: center;
-	}
-
-	&__skill-name {
-		flex-grow: 1;
-	}
-
-	&__skill-percent {
-		margin-left: auto;
-		position: relative;
-		margin-left: 20px;
-		flex-grow: 0;
-		max-width: 100px;
-
-		&:before {
-			display: block;
-			content: '%';
-			position: absolute;
-			right: 0;
-			color: rgba(#414c63, 0.5);
-		}
-	}
-
-	&__skill-edit {
-		margin-left: 60px;
-	}
-
-	&__skill-edit-btn {
-		width: 10px;
-		height: 10px;
-		transition: opacity .3s;
-
-		&--edit {
-		}
 	}
 
 	&__footer {
@@ -170,45 +91,7 @@
 		}
 	}
 
-
 	// tag
-
-	&__tag {
-		padding: 0 40px 0 20px;
-		height: 30px;
-		border-radius: 15px;
-		background-color: #f4f4f4;
-		line-height: 30px;
-		color: #8b8e91;
-		font-weight: 400;
-		position: relative;
-
-		&:nth-child(n+2) {
-			margin-left: 10px;
-		}
-
-		&:before,
-		&:after {
-			display: block;
-			content: '';
-			width: 15px;
-			height: 2px;
-			background-color: #60697c;
-			position: absolute;
-			top: 50%;
-			right: 10px;
-			transform-origin: 50% 50%;
-			transform: translateY(-50%);
-		}
-
-		&:after {
-			transform: rotate(45deg)
-		}
-
-		&:before {
-			transform: rotate(-45deg)
-		}
-	}
 
 	&__add-icon {
 		width: 150px;

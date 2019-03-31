@@ -1,4 +1,6 @@
 <template lang="pug">
+  include ../mixins.pug
+
   .maincontent.admin
     .admin__header-container
       Header(
@@ -15,14 +17,18 @@
       AboutPage
 
       WorkPage
+
+      //- ReviewsPage
+
 </template>
 
 <script>
 import Header from './src/components/Header'
 import Tabs from './src/components/Tabs'
 import Route from './src/components/Route'
-import AboutPage from './src/components/SetupSkills'
+import AboutPage from './src/components/About'
 import WorkPage from './src/components/WorkPage'
+import ReviewsPage from './src/components/Reviews'
 
 export default {
   components: {
@@ -30,7 +36,8 @@ export default {
     Tabs,
     AboutPage,
     Route,
-    WorkPage
+    WorkPage,
+    ReviewsPage
   }
 }
 </script>
@@ -46,6 +53,8 @@ export default {
   @import "../styles/admin/add-work.pcss";
   @import "../styles/admin/btn.pcss";
   @import "../styles/admin/setup-skills.pcss";
+  @import "../styles/admin/skills-list.pcss";
+  @import "../styles/admin/reviews.pcss";
 
   .app__route-info {
     margin: 55px 0;
