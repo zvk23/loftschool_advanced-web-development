@@ -23,21 +23,7 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-    .route {
-
-        &__container {
-            display: flex;
-            align-items: center;
-        }
-
-        &__title {
-            color: #414c63;
-        }
-
-        &__controls {
-            margin-left: 60px;
-        }
-    }
+    
 </style>
 
 

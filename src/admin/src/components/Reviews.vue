@@ -1,16 +1,135 @@
 <template lang="pug">
     .reviews
         .container.reviews__container
-            .card.card--full-size.reviews__add-review
-                .card__header
-                    h3.card__header-title Новый отзыв
-                .card__body
+            .reviews__add-review
+                Card(
+                    modifier="full-size"
+                    title="Новый отзыв"
+                )
                     .add-review
+                        .add-review__container
+                            .add-review__avatar-block
+                                .add-review__author-photo
+                                .add-review__add-photo-btn
+                                    button.btn.btn--blue-color Добавить фото
+                            .add-review__desc-block
+                                .add-review__desc-row
+                                    .add-review__input-block
+                                        label(for="author-name").add-review__label Имя автора
+                                        input.add-review__input.add-review__input-name#author-name
+                                    
+                                    .add-review__input-block
+                                        label(for="author-position").add-review__label Титут автора
+                                        input.add-review__input.add-review__input--position#author-position
+
+                                .add-review__desc-row
+                                    .add-review__input-block
+                                        label(for="author-review").add-review__label Отзыв
+                                        textarea.add-review__input.add-review__input--text#author-review(
+                                            placeholder="Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!"
+                                        )
+                            .add-review__footer
+                                .add-review__footer-btn
+                                    button.btn.btn--cancel
+                                        | Отменить
+                                
+                                .add-review__footer-btn
+                                    button.btn.btn--gradient
+                                        | Сохранить
+            
+            .reviews__reviews-container
+                ul.reviews__reviews-list
+                    li.reviews__reviews-item
+                        addBtn(
+                            size="card"
+                            name="Добавить работу"
+                        )
+                    
+                    li.reviews__reviews-item
+                        Card(
+                            modifier="reviews"
+                            type="review"
+                            author="Владимир Сабанцев"
+                            authorPosition="Преподователь"
+                            authorAvatarUrl="https://thesocietypages.org/socimages/files/2009/05/vimeo.jpg"
+                        )   
+                            .reviews__review-text
+                                | Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах
+                            
+                            .reviews__review-footer
+                                button.btn.btn--change
+                                    |  Править
+                                
+                                button.btn.btn--delete
+                                    |  Удалить
+                    
+                    li.reviews__reviews-item
+                        Card(
+                            modifier="reviews"
+                            type="review"
+                            author="Владимир Сабанцев"
+                            authorPosition="Преподователь"
+                            authorAvatarUrl="https://thesocietypages.org/socimages/files/2009/05/vimeo.jpg"
+                        )   
+                            .reviews__review-text
+                                | Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах
+                            
+                            .reviews__review-footer
+                                button.btn.btn--change
+                                    |  Править
+                                
+                                button.btn.btn--delete
+                                    |  Удалить
+                   
+                    li.reviews__reviews-item
+                        Card(
+                            modifier="reviews"
+                            type="review"
+                            author="Владимир Сабанцев"
+                            authorPosition="Преподователь"
+                            authorAvatarUrl="https://thesocietypages.org/socimages/files/2009/05/vimeo.jpg"
+                        )   
+                            .reviews__review-text
+                                | Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах
+                            
+                            .reviews__review-footer
+                                button.btn.btn--change
+                                    |  Править
+                                
+                                button.btn.btn--delete
+                                    |  Удалить
+                    
+                    li.reviews__reviews-item
+                        Card(
+                            modifier="reviews"
+                            type="review"
+                            author="Владимир Сабанцев"
+                            authorPosition="Преподователь"
+                            authorAvatarUrl="https://thesocietypages.org/socimages/files/2009/05/vimeo.jpg"
+                        )   
+                            .reviews__review-text
+                                | Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах
+                            
+                            .reviews__review-footer
+                                button.btn.btn--change
+                                    |  Править
+                                
+                                button.btn.btn--delete
+                                    |  Удалить
+
+
+                                    
 </template>
 
 <script>
+import Card from "./Card";
+import addBtn from "./addBtn";
+
 export default {
-    
+    components: {
+        Card,
+        addBtn
+    }
 }
 </script>
 

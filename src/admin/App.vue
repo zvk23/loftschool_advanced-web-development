@@ -18,7 +18,7 @@
 
       WorkPage
 
-      //- ReviewsPage
+      ReviewsPage
 
 </template>
 
@@ -49,12 +49,16 @@ export default {
   @import "../styles/layout/base.pcss";
   @import "../styles/blocks/admin.pcss";
   @import "../styles/admin/card.pcss";
+  @import "../styles/admin/tabs.pcss";
+  @import "../styles/admin/route.pcss";
+  @import "../styles/admin/add-btn.pcss";
   @import "../styles/admin/works.pcss";
   @import "../styles/admin/add-work.pcss";
   @import "../styles/admin/btn.pcss";
   @import "../styles/admin/setup-skills.pcss";
   @import "../styles/admin/skills-list.pcss";
   @import "../styles/admin/reviews.pcss";
+  @import "../styles/admin/add-review.pcss";
 
   .app__route-info {
     margin: 55px 0;
