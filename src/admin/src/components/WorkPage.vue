@@ -4,6 +4,7 @@
             Card(
                 modifier="full-size"
                 title="Редактирование работы"
+                type="add"
             )
                 .add-work
                     .add-work__container

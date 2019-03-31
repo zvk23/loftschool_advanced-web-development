@@ -1,7 +1,10 @@
 <template lang="pug">
     .card(:class="modifier ? 'card--' + modifier : '' ")
-        .card__header(v-if="!type")
+        .card__header(v-if="type == 'skill'")
             h3.card__header-title {{ title }}
+            .card__header-btns
+                button.btn.btn--ok.card__header-btn
+                button.btn.btn--remove.card__header-btn
 
         .card__header(v-else-if="type == 'review'")
             .card__review-author
@@ -11,13 +14,16 @@
                     .card__author-name {{ author }}
                     .card__author-position {{ authorPosition }}
 
-        .card__header.card__header--work(v-if="type == 'work'")
+        .card__header.card__header--work(v-else-if="type == 'work'")
             .card__work-thumb
                 img(src="../../../images/content/portfolio/1.jpg").card__work-image
                 .card__tags-list
                     .card__tags-item HTML5
                     .card__tags-item CSS3
                     .card__tags-item JavaScript
+        
+        .card__header(v-else)
+            h3.card__header-title {{ title }}
 
         .card__body
             slot

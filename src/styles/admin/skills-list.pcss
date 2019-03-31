@@ -42,7 +42,7 @@
 			width: 60px;
 		}
 
-		&--skill-footer {
+		&--footer {
 			border-bottom: 1px solid #000;
 		}
 
@@ -53,6 +53,11 @@
 
 	&__skill-name {
 		flex-grow: 1;
+
+		&--footer {
+			flex-grow: 0;
+			width: 50%;
+		}
 	}
 
 	&__skill-percent {
@@ -82,5 +87,16 @@
 
 		&--edit {
 		}
+	}
+
+	&__footer {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		margin-top: 40px;
+	}
+
+	&__footer-btn {
+		margin-left: 20px;
 	}
 }
