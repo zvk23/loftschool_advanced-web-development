@@ -14,6 +14,11 @@
         Route(pageTitle="Обо мне")
     
     main.admin__main-container
+      appLogin(
+        v-if="showLogin"
+        @closeLoginForm="showLogin = !showLogin"
+      )
+
       AboutPage
 
       WorkPage
@@ -26,6 +31,7 @@
 import Header from './src/components/Header'
 import Tabs from './src/components/Tabs'
 import Route from './src/components/Route'
+import appLogin from './src/components/Login'
 import AboutPage from './src/components/About'
 import WorkPage from './src/components/WorkPage'
 import ReviewsPage from './src/components/Reviews'
@@ -37,7 +43,18 @@ export default {
     AboutPage,
     Route,
     WorkPage,
-    ReviewsPage
+    ReviewsPage,
+    appLogin
+  },
+  data() {
+    return {
+      showLogin: true
+    }
+  },
+  methods: {
+    closeLoginForm() {
+      console.log('this', this);
+    }
   }
 }
 </script>
@@ -49,6 +66,7 @@ export default {
   @import "../styles/layout/base.pcss";
   @import "../styles/blocks/admin.pcss";
   @import "../styles/admin/card.pcss";
+  @import "../styles/admin/app-login.pcss";
   @import "../styles/admin/tabs.pcss";
   @import "../styles/admin/route.pcss";
   @import "../styles/admin/add-btn.pcss";
