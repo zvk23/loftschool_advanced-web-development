@@ -15,7 +15,6 @@ export default (() => {
         });
 
         if (emptyArray.length > 0) {
-            alert('error form')
         } else {
             let xhr = new XMLHttpRequest;
             console.log('xhr', xhr);

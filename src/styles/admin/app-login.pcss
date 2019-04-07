@@ -41,6 +41,22 @@
         margin-top: 40px;
         position: relative;
 
+        &:after {
+			display: block;
+			content: 'Какая-то ошибка';
+			height: 45px;
+			padding: 0 10px;
+			line-height: 45px;
+			color: #ffffff;
+			background-color: #cd1515;
+			position: absolute;
+			bottom: -45px;
+			left: 45px;
+			font-weight: 300;
+			opacity: 0;
+			transition: opacity .3s;
+		}
+
         &:before {
             display: block;
             content: '';
@@ -61,6 +77,9 @@
         }
 
         &.is-error {
+            &:after {
+                opacity: 1;
+            }
             .app-login__input {
                 border-color: #f00;
             }
@@ -87,7 +106,7 @@
     }
 
     &__btn {
-        margin: 40px auto 0;
+        margin: 50px auto 0;
     }
 }
 
