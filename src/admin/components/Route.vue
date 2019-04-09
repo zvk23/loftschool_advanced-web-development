@@ -3,27 +3,29 @@
         .container.route__container
             .route__title Блок &laquo;{{pageTitle}}&raquo;
             .route__controls
-                addBtn(
+                add-btn(
                     name="Добавить группу",
-                    size="'small'"
+                    size="small"
+                    v-if="addBtn"
                 )
 </template>
 
 <script>
-import addBtn from './addBtn'
-
 export default {
     components: {
-        addBtn
+        addBtn: () => import('components/addBtn.vue')
     },
     props: {
-        pageTitle: String
+        pageTitle: String,
+        addBtn: false
     }
 }
 </script>
 
 <style lang="postcss" scoped>
-    
+    .route {
+        margin: 0 0 55px 0;
+    }
 </style>
 
 

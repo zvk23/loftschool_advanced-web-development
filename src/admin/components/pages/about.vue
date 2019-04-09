@@ -1,5 +1,7 @@
 <template lang="pug">
     .setup-skills
+        route-info
+        
         .container.setup-skills__container
             ul.setup-skills__list
                 li.setup-skills__item
@@ -25,7 +27,7 @@
                                     .skills-list__skill-percent
                                         input.skills-list__input.skills-list__input--footer.skills-list__input--percent(placeholder="100")
                                     .skills-list__footer-btn
-                                        addBtn(
+                                        add-btn(
                                             size="big"
                                         )
                                         
@@ -64,13 +66,11 @@
 </template>
 
 <script>
-import addBtn from './addBtn'
-import Card from './Card'
-
 export default {
     components: {
-        addBtn,
-        Card
+        addBtn: () => import('components/addBtn.vue'),
+        Card: () => import('components/Card.vue'),
+        routeInfo: () => import('components/Route.vue')
     }
 }
 </script>

@@ -40,7 +40,7 @@
             .reviews__reviews-container
                 ul.reviews__reviews-list
                     li.reviews__reviews-item
-                        addBtn(
+                        add-btn(
                             size="card"
                             name="Добавить работу"
                         )
@@ -122,13 +122,10 @@
 </template>
 
 <script>
-import Card from "./Card";
-import addBtn from "./addBtn";
-
 export default {
     components: {
-        Card,
-        addBtn
+        Card: () => import('components/Card.vue'),
+        addBtn: () => import('components/AddBtn.vue')
     }
 }
 </script>

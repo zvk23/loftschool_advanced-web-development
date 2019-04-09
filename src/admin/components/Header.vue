@@ -3,7 +3,7 @@
         .container.header__container
             .header__user
                 .header__user-avatar
-                    img.header__user-avatar-image(src="../../../images/content/user.jpg")
+                    img.header__user-avatar-image(src="../../images/content/user.jpg")
                 .header__user-info
                     .header__user-name Виктор Ефименко
                     a.header__controls-link.header__controls-link--desktop-hidden Выйти

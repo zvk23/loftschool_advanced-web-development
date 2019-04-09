@@ -16,7 +16,7 @@
 
         .card__header.card__header--work(v-else-if="type == 'work'")
             .card__work-thumb
-                img(src="../../../images/content/portfolio/1.jpg").card__work-image
+                img(src="../../images/content/portfolio/1.jpg").card__work-image
                 .card__tags-list
                     .card__tags-item HTML5
                     .card__tags-item CSS3

@@ -1,5 +1,8 @@
 <template lang="pug">
     section.works
+        route-info(
+            pageTitle="Работы"
+        )
         .container.works__container
             Card(
                 modifier="full-size"
@@ -65,7 +68,7 @@
             .works__works-container 
                 ul.works__works-list
                     li.works__work-item
-                         addBtn(
+                         add-btn(
                             size="card"
                             name="Добавить работу"
                         )
@@ -160,13 +163,11 @@
 </template>
 
 <script>
-import Card from './Card'
-import addBtn from './addBtn'
-
 export default {
     components: {
-        Card,
-        addBtn
+        addBtn: () => import('components/addBtn.vue'),
+        Card: () => import('components/Card.vue'),
+        routeInfo: () => import('components/Route.vue')
     }
 }
 </script>

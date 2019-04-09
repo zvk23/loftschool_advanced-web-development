@@ -10,41 +10,20 @@
     .admin__tabs-container
       Tabs
 
-    .admin__route-info-container
-        Route(pageTitle="Обо мне")
-    
     main.admin__main-container
-      appLogin(
-        v-if="showLogin"
-        @closeLoginForm="showLogin = !showLogin"
-      )
-
-      AboutPage
-
-      WorkPage
-
-      ReviewsPage
+      router-view
 
 </template>
 
 <script>
-import Header from './src/components/Header'
-import Tabs from './src/components/Tabs'
-import Route from './src/components/Route'
-import appLogin from './src/components/Login'
-import AboutPage from './src/components/About'
-import WorkPage from './src/components/WorkPage'
-import ReviewsPage from './src/components/Reviews'
-
 export default {
   components: {
-    Header,
-    Tabs,
-    AboutPage,
-    Route,
-    WorkPage,
-    ReviewsPage,
-    appLogin
+    Header: () => import('components/Header.vue'),
+    Tabs: () => import('components/Tabs.vue'),
+    AboutPage: () => import('components/pages/about.vue'),
+    WorkPage: () => import('components/pages/workPage.vue'),
+    ReviewsPage: () => import('components/pages/reviews.vue'),
+    appLogin: () => import('components/pages/login.vue')
   },
   data() {
     return {

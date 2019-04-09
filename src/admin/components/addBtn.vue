@@ -7,9 +7,6 @@
 
 <script>
 export default {
-	props: ["name", "size"]
-};
+    props: ["name", "size"]
+}
 </script>
-
-<style lang="postcss" scoped>
-</style>
