@@ -11,10 +11,12 @@ import anchorsLinks from "./scripts/anchorLinks";
 import menuScript from "./scripts/toggleNavPopup";
 import parallax from "./scripts/parallax.js";
 import skillsAnimation from "./scripts/skillsAnimations";
+import formWorker from "./scripts/formWorker";
 
 window.addEventListener('load', () => {
   menuScript.init();
   anchorsLinks.init();
+  formWorker.init('#feedback-form');
 })
 
 let 

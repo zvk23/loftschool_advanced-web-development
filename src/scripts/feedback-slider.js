@@ -29,7 +29,6 @@ new Vue({
 		},
 		setFlickityGroupCells() {
 			this.flickityOptions.groupCells = this.desktop == true ? 2 : 1;
-			console.log('this.flickityOptions.groupCells', this.flickityOptions.groupCells);
 		},
 	},
 	created() {

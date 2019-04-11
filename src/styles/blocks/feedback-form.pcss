@@ -9,25 +9,58 @@
 		width: 100%;
 
 		&:nth-child(n + 2) {
-			margin-top: 40px;
+			margin-top: 50px;
 		}
 	}
 
 	&__input-block {
 		position: relative;
-		border-bottom: 1px solid #000;
-		padding: 45px 0 15px 0;
+		padding: 45px 0 0 0;
 		flex-grow: 1;
+
+		&:before {
+			display: block;
+			content: 'Какая-то ошибка';
+			height: 45px;
+			padding: 0 10px;
+			line-height: 45px;
+			color: #ffffff;
+			background-color: #cd1515;
+			position: absolute;
+			bottom: -45px;
+			left: 45px;
+			font-weight: 300;
+			opacity: 0;
+			transition: opacity .3s;
+		}
 
 		&:nth-child(n + 2) {
 			margin-left: 50px;
 		}
 
 		&--message {
-			padding: 30px 0 15px 0;
+			padding: 30px 0 0 0;
+
+			&:before {
+				bottom: -40px;
+			}
 
 			.feedback-form__input-icon {
 				top: 40px;
+			}
+		}
+
+		&.is-error {
+			&:before {
+				opacity: 1;
+			}
+			
+			.feedback-form__input {
+				border-bottom: 1px solid #cd1515 !important;
+			}
+
+			.feedback-form__input-icon {
+				fill:#cd1515 !important;
 			}
 		}
 	}
@@ -35,26 +68,36 @@
 	&__input {
 		border: none;
 		background: none;
+		border-bottom: 1px solid #414c63;
+		padding-bottom: 15px;
 		width: 100%;
 		padding-left: 45px;
 		font-weight: 700;
 		font-size: 18px;
 		color: $text-color;
+		transition: border-color .3s;
 
 		&::placeholder {
 			color: inherit;
 			transition: opacity 0.3s;
+			color: #c6c9d0;
 		}
 
 		&:focus {
+			border-color: $violet-color;
 			&::placeholder {
 				opacity: 0;
+			}
+
+			& + .feedback-form__input-icon {
+				fill: $violet-color;
 			}
 		}
 
 		&--message {
 			width: 100%;
 			line-height: 36px;
+			resize: none
 		}
 	}
 
@@ -76,6 +119,7 @@
 		pointer-events: none;
 		fill: #c5c8d2;
 		cursor: default;
+		transition: fill .3s;
 	}
 
 	&__button {
