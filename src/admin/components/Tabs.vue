@@ -6,6 +6,7 @@
 					v-for="tab in tabs"
 					tag="li"
 					:to="tab.href"
+					:key="tab.href"
 					class="tabs__item"
 					exact-active-class="is-active"
 				) {{tab.title}}

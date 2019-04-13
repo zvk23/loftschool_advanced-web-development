@@ -11,13 +11,20 @@
             .header__title {{title}}
 
             .header__controls-block
-                a.header__controls-link.header__controls-link--desktop-visible Выйти
+                a.header__controls-link.header__controls-link--desktop-visible(
+                    @click="logout"
+                ) Выйти
 </template>
 
 <script>
 export default {
     props: {
         title: String
+    },
+    methods: {
+        logout() {
+            this.$router.replace('/login');
+        }
     }
 }
 </script>

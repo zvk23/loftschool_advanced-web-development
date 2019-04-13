@@ -3,11 +3,13 @@
         .container.route__container
             .route__title Блок &laquo;{{pageTitle}}&raquo;
             .route__controls
-                add-btn(
-                    name="Добавить группу",
-                    size="small"
-                    v-if="addBtn"
-                )
+                transition(name="add-btn")
+                    add-btn(
+                        name="Добавить группу",
+                        size="small"
+                        v-if="withBtn"
+                        @showAddGroupForm="showAddGroupForm"
+                    )
 </template>
 
 <script>
@@ -17,7 +19,12 @@ export default {
     },
     props: {
         pageTitle: String,
-        addBtn: false
+        withBtn: false
+    },
+    methods: {
+        showAddGroupForm() {
+            this.$emit('showAddGroupForm')
+        }
     }
 }
 </script>
@@ -26,6 +33,28 @@ export default {
     .route {
         margin: 0 0 55px 0;
     }
+
+    /* add btn animation */
+
+.add-btn-enter-active, .add-btn-leave-active {
+    transition: opacity .3s ease;
+}
+
+.add-btn-enter {
+    opacity: 0;
+}
+
+.add-btn-enter-to {
+    opacity: 1;
+}
+
+.add-btn-leave {
+    opacity: 1;
+}
+
+.add-btn-leave-to {
+    opacity: 0;
+}
 </style>
 
 

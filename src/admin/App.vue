@@ -57,13 +57,10 @@ export default {
   @import "../styles/admin/reviews.pcss";
   @import "../styles/admin/add-review.pcss";
 
-  .app__route-info {
-    margin: 55px 0;
-  }
-
-  .admin {
-    position: relative;
-    padding-bottom: 50px;
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
 
     &:before {
       display: block;
@@ -75,10 +72,30 @@ export default {
       right: 0;
       background-image: url('../images/Mountain-Baloon.jpg');
       background-size: cover;
-      background-position: botom;
-      z-index: -1;
+      background-position: top;
       opacity: 0.2;
     }
   }
+
+  .admin-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 100%;
+  }
+
+  .app__route-info {
+    margin: 55px 0;
+  }
+
+  .admin {
+    position: relative;
+    padding-bottom: 50px;
+
+    &__main-container {
+      margin-top: 50px;
+    }
+  }
+
 </style>
 

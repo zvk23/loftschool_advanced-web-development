@@ -1,11 +1,44 @@
 <template lang="pug">
     .card(:class="modifier ? 'card--' + modifier : '' ")
+        //- skill
         .card__header(v-if="type == 'skill'")
-            h3.card__header-title {{ title }}
-            .card__header-btns
-                button.btn.btn--ok.card__header-btn
+            h3.card__header-title(
+                v-if="!editSkillsGroupName"
+            ) {{ groupTitle }}
+            input.card__header-title-input(
+                v-else
+                v-model="groupTitle"
+            )
+            .card__header-btns(
+                v-if="!editSkillsGroupName"
+            )
+                button.btn.btn--change.btn--change-gray.card__header-btn(
+                    @click="editSkillsGroupName = true"
+                )
+            
+            .card__header-btns(
+                v-else="editSkillsGroupName"
+            )
+                button.btn.btn--ok.card__header-btn(
+                    @click="editSkillsGroupName = false"
+                )
                 button.btn.btn--remove.card__header-btn
 
+        //- add-skill-group
+        .card__header(v-else-if="type == 'add-skills-group'")
+            input.card__header-title-input(
+                v-model="newGroupName"
+                placeholder="New group name"
+            )
+            .card__header-btns
+                button.btn.btn--ok.card__header-btn(
+                    @click="addSkillGroup"
+                )
+                button.btn.btn--remove.card__header-btn(
+                    @click="closeAddSkillForm"
+                )
+
+        //- review
         .card__header(v-else-if="type == 'review'")
             .card__review-author
                 .card__author-photo
@@ -14,6 +47,7 @@
                     .card__author-name {{ author }}
                     .card__author-position {{ authorPosition }}
 
+        //- work
         .card__header.card__header--work(v-else-if="type == 'work'")
             .card__work-thumb
                 img(src="../../images/content/portfolio/1.jpg").card__work-image
@@ -30,6 +64,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
     data() {
         return {
@@ -43,6 +79,25 @@ export default {
         authorPosition: String,
         authorAvatarUrl: String,
         title: String
+    },
+    data() {
+        return {
+            newGroupName: '',
+            editSkillsGroupName: false,
+            groupTitle: 'Workflow'
+        }
+    },
+    methods: {
+
+        closeAddSkillForm() {
+            this.$emit('closeAddSkillsForm')
+        },
+        addSkillGroup() {
+            this.$emit('addSkillGroup', this.newGroupName);
+            this.newGroupName = ''
+        }
+    },
+    created() {
     }
 }
 </script>

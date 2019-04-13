@@ -94,6 +94,15 @@
 		align-items: center;
 		justify-content: flex-end;
 		margin-top: 40px;
+
+		&.is-disabled {
+			.skills-list__skill-name,
+			.skills-list__skill-percent,
+			.skills-list__footer-btn {
+				pointer-events: none;
+				color: gray;
+			}
+		}
 	}
 
 	&__footer-btn {

@@ -1,5 +1,8 @@
 <template lang="pug">
     .reviews
+        routeInfo(
+            pageTitle="Отзывы"
+        )
         .container.reviews__container
             .reviews__add-review
                 Card(
@@ -125,7 +128,8 @@
 export default {
     components: {
         Card: () => import('components/Card.vue'),
-        addBtn: () => import('components/AddBtn.vue')
+        addBtn: () => import('components/AddBtn.vue'),
+        routeInfo: () => import('components/Route.vue')
     }
 }
 </script>
