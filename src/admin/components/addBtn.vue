@@ -28,7 +28,7 @@ export default {
     },
     methods: {
         addBtnHandler() {
-            this.$emit('showAddGroupForm', null)
+            this.$emit('addBtnHandler', null)
         }
     }
 }

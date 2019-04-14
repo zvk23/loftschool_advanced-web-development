@@ -4,10 +4,10 @@
         .card__header(v-if="type == 'skill'")
             h3.card__header-title(
                 v-if="!editSkillsGroupName"
-            ) {{ groupTitle }}
+            ) {{ title }}
             input.card__header-title-input(
                 v-else
-                v-model="groupTitle"
+                v-model="title"
             )
             .card__header-btns(
                 v-if="!editSkillsGroupName"
@@ -78,7 +78,8 @@ export default {
         author: String,
         authorPosition: String,
         authorAvatarUrl: String,
-        title: String
+        title: String,
+        categoryId: Number
     },
     data() {
         return {
@@ -88,7 +89,6 @@ export default {
         }
     },
     methods: {
-
         closeAddSkillForm() {
             this.$emit('closeAddSkillsForm')
         },

@@ -1,7 +1,7 @@
-export const categories = {
+export default {
     namespaced: true,
     state: {
-        // categories: []
+        categories: []
     },
     actions: {
         async addNewSkillGroup(store, groupTitle) {
@@ -13,12 +13,28 @@ export const categories = {
             } catch (error) {
                 throw new Error(error.response.data.error);
             }
+        },
+        async fetchCategories({commit}) {
+            try {
+                const categories = await this.$axios.get('/categories');
+                commit('SET_CATEGORIES', categories.data)
+                return categories;
+            } catch (error) {
+                console.log('ошибка згрузки категорий', error.message);
+            }
+        },
+        async removeCategory({commit}, categoryId) {
+            try {
+                const response = await this.$axios.post(`/categories/${categoryId}`);
+                console.log('response', response);
+            } catch (error) {
+                // error handler
+            }
         }
     },
-    getters: {
-
-    },
     mutations: {
-        
+        SET_CATEGORIES: (state, categories) => {
+            state.categories = categories
+        } 
     }
 }

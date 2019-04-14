@@ -1,7 +1,6 @@
 <template lang="pug">
     .app-login
         .app-login__card
-            pre {{ user }}
             .app-login__close-btn
                 button.btn.btn--close(
                     @click="closeLoginForm"
@@ -39,8 +38,8 @@ export default {
     data() {
         return {
             user: {
-                name: '',
-                password: ''
+                name: 'zvikk',
+                password: '5533e211'
             },
             errors: []
         }
@@ -73,17 +72,11 @@ export default {
                 this.$refs.password.classList.add('is-error');
             };
         },
-        login() {
+        async login() {
             try {
-               $axios.post('/login', this.user).then(res => {
-                   const token = res.data.token;
-
-                   localStorage.setItem('token', token)
-
-                   const tokenFromLocalStorage = localStorage.getItem('token');
-
-                   console.log('tokenFromLocalStorage', tokenFromLocalStorage);
-               })
+                const {data: {token}} = await $axios.post('/login', this.user)
+                localStorage.setItem('token', token);
+                this.$router.replace('/')
             } catch (error) {
                 console.log('error', error);
             }

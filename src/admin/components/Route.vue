@@ -8,7 +8,7 @@
                         name="Добавить группу",
                         size="small"
                         v-if="withBtn"
-                        @showAddGroupForm="showAddGroupForm"
+                        @addBtnHandler="addBtnHandler"
                     )
 </template>
 
@@ -22,8 +22,8 @@ export default {
         withBtn: false
     },
     methods: {
-        showAddGroupForm() {
-            this.$emit('showAddGroupForm')
+        addBtnHandler() {
+            this.$emit('addBtnHandler')
         }
     }
 }

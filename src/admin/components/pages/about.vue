@@ -3,9 +3,8 @@
         route-info(
             pageTitle="Обо мне",
             :withBtn="showAddingButton"
-            @showAddGroupForm="toggleAddingForm"
+            @addBtnHandler="toggleAddingForm"
         )
-        
         .container.setup-skills__container
             ul.setup-skills__list
                 transition(
@@ -32,41 +31,31 @@
                                             :disabled="true"
                                         )
 
-                li.setup-skills__item
+                li.setup-skills__item(
+                    v-for="category in categories"
+                )
                     Card(
                         modifier="skill",
-                        title="Workflow",
+                        :title="category.category",
                         type="skill"
+                        :categoryId="category.id"
                     )
-                        ul.skills-list
-                            li.skills-list__item
-                                .skills-list__skill-name
-                                    div.skills-list__input.skills-list__input--name Git
-                                .skills-list__skill-percent
-                                    div.skills-list__input.skills-list__input--percent 90
-                                .skills-listskill-edit 
-                                    button.skills-list__skill-edit-btn.skills-list__skill-edit-btn--edit
-                                    button.skills-list__skill-edit-btn
-                                    button.skills-list__skill-edit-btn
-                        .skills-list__footer
-                                .skills-list__skill-name.skills-list__skill-name--footer
-                                    input.skills-list__input.skills-list__input--footer.skills-list__input--name(placeholder="Новый скилл")
-                                .skills-list__skill-percent
-                                    input.skills-list__input.skills-list__input--footer.skills-list__input--percent(placeholder="100")
-                                .skills-list__footer-btn
-                                    add-btn(
-                                        size="big"
-                                    )
+                        SkillsList(
+                            :categoryId="category.id"
+                            @addNewSkill='addSkill'
+                        )
+                        
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 
 export default {
     components: {
-        addBtn: () => import('components/addBtn.vue'),
+        AddBtn: () => import('components/addBtn.vue'),
         Card: () => import('components/Card.vue'),
-        routeInfo: () => import('components/Route.vue')
+        SkillsList: () => import('components/SkillsList.vue'),
+        RouteInfo: () => import('components/Route.vue')
     },
     data() {
         return {
@@ -75,14 +64,33 @@ export default {
             newGroupName: ''
         }
     },
+    computed: {
+        ...mapState('categories', {
+            categories: (state) => state.categories
+        })
+    },
     methods: {
-        ...mapActions('categories', ['addNewSkillGroup']),
+        ...mapActions('categories', ['addNewSkillGroup', 'fetchCategories']),
+        ...mapActions('skills', ['adddNewSkill']),
         toggleAddingForm() {
             this.showAddForm = !this.showAddForm;
             this.showAddingButton = !this.showAddingButton;
         },
         addSkillGroup(title) {
             this.addNewSkillGroup(title);
+        },
+        async addSkill(skill) {
+            try {
+                await this.adddNewSkill(skill)
+            } catch (error) {
+            }
+        }
+    },
+    created() {
+        try {
+            this.fetchCategories();
+        } catch (error) {
+            alert('Ошибка загрузки категорий')
         }
     }
 }
