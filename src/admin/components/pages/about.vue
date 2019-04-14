@@ -39,10 +39,12 @@
                         :title="category.category",
                         type="skill"
                         :categoryId="category.id"
+                        @removeCategory="removeCurrentCategory"
                     )
                         SkillsList(
                             :categoryId="category.id"
                             @addNewSkill='addSkill'
+                            :skills="filterSkillsByCategoryId(category.id)"
                         )
                         
 </template>
@@ -66,31 +68,55 @@ export default {
     },
     computed: {
         ...mapState('categories', {
-            categories: (state) => state.categories
+            categories: (state) => state.categories,
+        }),
+        ...mapState('skills', {
+            skills: (state) => state.skills
         })
     },
     methods: {
-        ...mapActions('categories', ['addNewSkillGroup', 'fetchCategories']),
-        ...mapActions('skills', ['adddNewSkill']),
+        ...mapActions('categories', ['addNewSkillGroup', 'fetchCategories', 'removeCategory']),
+        ...mapActions('skills', ['adddNewSkill', 'fetchSkills']),
         toggleAddingForm() {
             this.showAddForm = !this.showAddForm;
             this.showAddingButton = !this.showAddingButton;
         },
-        addSkillGroup(title) {
-            this.addNewSkillGroup(title);
+        async addSkillGroup(title) {
+            try {
+                await this.addNewSkillGroup(title);
+            } catch (error) {
+                // error handler
+            }
         },
         async addSkill(skill) {
             try {
                 await this.adddNewSkill(skill)
             } catch (error) {
             }
+        },
+        filterSkillsByCategoryId(id) {
+            return this.skills.filter(skill => skill.category  === id);
+        },
+        async removeCurrentCategory(categoryId) {
+            try {
+                await this.removeCategory(categoryId)
+                await this.fetchCategories();
+            } catch (error) {
+                console.log('error.message', error.message);
+            }
         }
     },
-    created() {
+    async created() {
         try {
-            this.fetchCategories();
+            await this.fetchCategories();
         } catch (error) {
             alert('Ошибка загрузки категорий')
+        }
+
+        try {
+            await this.fetchSkills();
+        } catch (error) {
+            alert('Ошибка загрузки скиллов')
         }
     }
 }

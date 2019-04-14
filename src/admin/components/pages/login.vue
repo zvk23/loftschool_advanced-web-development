@@ -74,8 +74,10 @@ export default {
         },
         async login() {
             try {
-                const {data: {token}} = await $axios.post('/login', this.user)
-                localStorage.setItem('token', token);
+                const response = await $axios.post('/login', this.user);
+                const token = response.data.token;
+                localStorage.setItem('token',token);
+                $axios.defaults.headers["Authorization"] = `Bearer ${token}`;
                 this.$router.replace('/')
             } catch (error) {
                 console.log('error', error);

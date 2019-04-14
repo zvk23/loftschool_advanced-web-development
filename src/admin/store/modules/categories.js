@@ -4,11 +4,12 @@ export default {
         categories: []
     },
     actions: {
-        async addNewSkillGroup(store, groupTitle) {
+        async addNewSkillGroup({commit}, groupTitle) {
             try {
                 const res = await this.$axios.post('/categories', {
                 title: groupTitle
             });
+            commit('ADD_CATEGORIES', groupTitle)
             return res;
             } catch (error) {
                 throw new Error(error.response.data.error);
@@ -25,8 +26,7 @@ export default {
         },
         async removeCategory({commit}, categoryId) {
             try {
-                const response = await this.$axios.post(`/categories/${categoryId}`);
-                console.log('response', response);
+                const response = await this.$axios.delete(`/categories/${categoryId}`);
             } catch (error) {
                 // error handler
             }
@@ -35,6 +35,9 @@ export default {
     mutations: {
         SET_CATEGORIES: (state, categories) => {
             state.categories = categories
-        } 
+        },
+        ADD_CATEGORIES: (state, categoryTitle) => {
+            state.categories.push(categoryTitle)
+        },
     }
 }

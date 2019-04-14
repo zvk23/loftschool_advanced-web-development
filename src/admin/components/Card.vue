@@ -22,7 +22,9 @@
                 button.btn.btn--ok.card__header-btn(
                     @click="editSkillsGroupName = false"
                 )
-                button.btn.btn--remove.card__header-btn
+                button.btn.btn--remove.card__header-btn(
+                    @click="emitRemoveCategory"
+                )
 
         //- add-skill-group
         .card__header(v-else-if="type == 'add-skills-group'")
@@ -95,6 +97,10 @@ export default {
         addSkillGroup() {
             this.$emit('addSkillGroup', this.newGroupName);
             this.newGroupName = ''
+        },
+        emitRemoveCategory() {
+            this.editSkillsGroupName = false
+            this.$emit('removeCategory', this.categoryId)
         }
     },
     created() {

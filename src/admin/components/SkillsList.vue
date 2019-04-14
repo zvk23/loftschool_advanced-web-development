@@ -1,10 +1,13 @@
 <template lang="pug">
     ul.skills-list
-        li.skills-list__item
+        li.skills-list__item(
+            v-for="skill in skills"
+            :key="skill.id"
+        )
             .skills-list__skill-name
-                div.skills-list__input.skills-list__input--name Git
+                div.skills-list__input.skills-list__input--name {{skill.title}}
             .skills-list__skill-percent
-                div.skills-list__input.skills-list__input--percent 10
+                div.skills-list__input.skills-list__input--percent {{skill.percent}}
             .skills-listskill-edit
                 button.skills-list__skill-edit-btn.skills-list__skill-edit-btn--edit
                 button.skills-list__skill-edit-btn
@@ -32,7 +35,7 @@ import $axios from '@/requests'
 
 export default {
     components: {
-        AddBtn: () => import('@/components/addBtn.vue')
+        addBtn: () => import('@/components/addBtn.vue')
     },
     data() {
         return {
@@ -44,7 +47,8 @@ export default {
         }
     },
     props: {
-        categoryId: Number
+        categoryId: Number,
+        skills: Array
     },
     methods: {
         addBtnHandler() {
