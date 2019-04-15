@@ -1,6 +1,8 @@
 .skills-list {
 	display: flex;
 	flex-direction: column;
+	height: 100%;
+	flex-grow: 1;
 
 	&__item {
 		display: flex;
@@ -93,7 +95,8 @@
 		display: flex;
 		align-items: center;
 		justify-content: flex-end;
-		margin-top: 40px;
+		margin-top: auto;
+		padding-top: 40px;
 
 		&.is-disabled {
 			.skills-list__skill-name,

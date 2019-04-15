@@ -43,7 +43,6 @@
                     )
                         SkillsList(
                             :categoryId="category.id"
-                            @addNewSkill='addSkill'
                             :skills="filterSkillsByCategoryId(category.id)"
                         )
                         
@@ -86,12 +85,6 @@ export default {
                 await this.addNewSkillGroup(title);
             } catch (error) {
                 // error handler
-            }
-        },
-        async addSkill(skill) {
-            try {
-                await this.adddNewSkill(skill)
-            } catch (error) {
             }
         },
         filterSkillsByCategoryId(id) {

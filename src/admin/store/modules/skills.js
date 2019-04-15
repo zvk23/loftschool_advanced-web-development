@@ -4,7 +4,7 @@ export default {
         skills: []
     },
     actions: {
-        async adddNewSkill({commit}, skill) {
+        async addNewSkill({commit}, skill) {
             try {
                 const response = await this.$axios.post('/skills', skill);
                 commit('ADD_SKILL', skill)
@@ -20,6 +20,22 @@ export default {
             } catch (error) {
                 alert(error.message)
             }
+        },
+        async removeSkill({commit}, id) {
+            try {
+                const response = await this.$axios.delete(`/skills/${id}`)
+                commit('REMOVE_SKILL', id)
+            } catch (error) {
+                
+            }
+        },
+        async changeSkill({commit}, skill) {
+            try {
+                const response = await this.$axios.post(`/skills/${skill.id}`, skill)
+                console.log('response', response);
+            } catch (error) {
+                console.log('error', error);
+            }
         }
     },
     mutations: {
@@ -28,6 +44,9 @@ export default {
         },
         ADD_SKILL: (state, skill) => {
             state.skills.push(skill)
+        }, 
+        REMOVE_SKILL: (state, deletedSkillId) => {
+            state.skills = state.skills.filter(skill => skill.id != deletedSkillId);
         }
     }
 }

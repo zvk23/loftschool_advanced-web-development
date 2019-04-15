@@ -31,6 +31,7 @@
             input.card__header-title-input(
                 v-model="newGroupName"
                 placeholder="New group name"
+                @keyup.enter="addSkillGroup"
             )
             .card__header-btns
                 button.btn.btn--ok.card__header-btn(

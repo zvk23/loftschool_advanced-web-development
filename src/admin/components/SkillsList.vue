@@ -1,17 +1,13 @@
 <template lang="pug">
     ul.skills-list
-        li.skills-list__item(
+        SkillItem(
             v-for="skill in skills"
             :key="skill.id"
+            :skill="skill"
+            :category="categoryId"
+            @removeThisSkill="removeThisSkill"
+            @changeThisSkill="changeThisSkill"
         )
-            .skills-list__skill-name
-                div.skills-list__input.skills-list__input--name {{skill.title}}
-            .skills-list__skill-percent
-                div.skills-list__input.skills-list__input--percent {{skill.percent}}
-            .skills-listskill-edit
-                button.skills-list__skill-edit-btn.skills-list__skill-edit-btn--edit
-                button.skills-list__skill-edit-btn
-                button.skills-list__skill-edit-btn
         .skills-list__footer
             .skills-list__skill-name.skills-list__skill-name--footer
                 input.skills-list__input.skills-list__input--footer.skills-list__input--name(
@@ -26,16 +22,18 @@
             .skills-list__footer-btn
                 add-btn(
                     size="big"
-                    @addBtnHandler="addBtnHandler"
+                    @addBtnHandler="addSkill(newSkill)"
                 )
 </template>
 
 <script>
 import $axios from '@/requests'
+import { mapActions, mapState } from 'vuex'
 
 export default {
     components: {
-        addBtn: () => import('@/components/addBtn.vue')
+        addBtn: () => import('@/components/addBtn.vue'),
+        SkillItem: () => import('@/components/SkillsItem.vue')
     },
     data() {
         return {
@@ -43,19 +41,40 @@ export default {
                 title: '',
                 percent: 0,
                 category: this.categoryId
-            }
+            },
+            isEditMode: false
         }
     },
     props: {
         categoryId: Number,
-        skills: Array
-    },
-    methods: {
-        addBtnHandler() {
-            this.$emit('addNewSkill', this.newSkill)
+        skills: {
+            type: Array,
+            default: []
         }
     },
-    created() {
+    methods: {
+        ...mapActions('skills', ['addNewSkill','removeSkill', 'changeSkill']),
+        async removeThisSkill(id) {
+            try {
+                await this.removeSkill(id)
+            } catch (error) {
+                console.log('error.message', error.message);
+            }
+        }, 
+        async changeThisSkill(skill) {
+            try {
+                this.changeSkill(skill)
+            } catch (error) {
+                console.log('error', error);
+            }
+        },
+        async addSkill(skill) {
+            try {
+                const response = await this.addNewSkill(skill)
+            } catch (error) {
+                console.log('error', error);
+            }
+        },
     }
 }
 </script>
