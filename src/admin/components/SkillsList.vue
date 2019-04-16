@@ -14,7 +14,7 @@
                     placeholder="Новый скилл",
                     v-model="newSkill.title"
                 )
-            .skills-list__skill-percent
+            .skills-list__skill-percent-container
                 input.skills-list__input.skills-list__input--footer.skills-list__input--percent(
                     placeholder="100",
                     v-model="newSkill.percent"
@@ -54,6 +54,10 @@ export default {
     },
     methods: {
         ...mapActions('skills', ['addNewSkill','removeSkill', 'changeSkill']),
+        resetNewSkill() {
+            this.newSkill.title = ''
+            this.newSkill.percent = ''
+        },
         async removeThisSkill(id) {
             try {
                 await this.removeSkill(id)
@@ -63,14 +67,14 @@ export default {
         }, 
         async changeThisSkill(skill) {
             try {
-                this.changeSkill(skill)
+                await this.changeSkill(skill)
             } catch (error) {
                 console.log('error', error);
             }
         },
         async addSkill(skill) {
             try {
-                const response = await this.addNewSkill(skill)
+                const response = await this.addNewSkill(skill);
             } catch (error) {
                 console.log('error', error);
             }

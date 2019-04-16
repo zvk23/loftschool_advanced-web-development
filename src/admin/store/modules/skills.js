@@ -32,7 +32,8 @@ export default {
         async changeSkill({commit}, skill) {
             try {
                 const response = await this.$axios.post(`/skills/${skill.id}`, skill)
-                console.log('response', response);
+                commit('EDIT_SKILL', skill)
+                return response;
             } catch (error) {
                 console.log('error', error);
             }
@@ -47,6 +48,9 @@ export default {
         }, 
         REMOVE_SKILL: (state, deletedSkillId) => {
             state.skills = state.skills.filter(skill => skill.id != deletedSkillId);
+        },
+        EDIT_SKILL: (state, editedSKill) => {
+            state.skills = state.skills.map(skill => skill.id === editedSKill.id ? editedSKill : skill)
         }
     }
 }

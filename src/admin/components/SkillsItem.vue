@@ -1,15 +1,15 @@
 <template lang="pug">
     li.skills-list__item
         .skills-list__skill-name
-            div.skills-list__input.skills-list__input--name(
+            div.skills-list__skill-title(
                 v-if="!isEditMode"
             ) {{skill.title}}
             input.skills-list__input.skills-list__input--name(
                 v-else
                 v-model="skill.title"
             )
-        .skills-list__skill-percent
-            div.skills-list__input.skills-list__input--percent(
+        .skills-list__skill-percent-container
+            div.skills-list__skill-percent(
                 v-if="!isEditMode"
             ) {{skill.percent}}
             input.skills-list__input.skills-list__input--percent(
