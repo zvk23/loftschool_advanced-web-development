@@ -12,13 +12,10 @@ export default {
     },
     getters: {
         userIsLogged: state => {
-            const 
-                userObj = state.user,
-                userObjIsEmpty = Object.keys(userObj) === 0 && userObj.constructor === Object ? true : false;
+            const userObj = state.user;
+            const userObjIsEmpty = Object.keys(userObj) === 0 && userObj.constructor === Object;
 
-            console.log('userObjIsEmpty', userObjIsEmpty);
-            
-            return userObjIsEmpty;
+            return userObjIsEmpty === false;
         }
     }
 }

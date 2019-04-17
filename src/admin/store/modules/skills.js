@@ -32,7 +32,7 @@ export default {
         async changeSkill({commit}, skill) {
             try {
                 const response = await this.$axios.post(`/skills/${skill.id}`, skill)
-                commit('EDIT_SKILL', skill)
+                commit('EDIT_SKILL', skill);
                 return response;
             } catch (error) {
                 console.log('error', error);

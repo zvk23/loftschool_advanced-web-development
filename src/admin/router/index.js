@@ -21,7 +21,7 @@ router.beforeEach( async (to, from, next) => {
 
 		 try {
 			 const response = await guard.get('/user');
-			 store.commit('SET_USER', response.data.user);
+			 store.commit('user/SET_USER', response.data.user);
 			 next();
 		 } catch (error) {
 			 router.replace('/login');

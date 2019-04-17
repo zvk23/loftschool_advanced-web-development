@@ -20,10 +20,6 @@ export default {
   components: {
     Header: () => import('components/Header.vue'),
     Tabs: () => import('components/Tabs.vue'),
-    AboutPage: () => import('components/pages/about.vue'),
-    WorkPage: () => import('components/pages/workPage.vue'),
-    ReviewsPage: () => import('components/pages/reviews.vue'),
-    appLogin: () => import('components/pages/login.vue')
   },
   data() {
     return {

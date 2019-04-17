@@ -12,9 +12,18 @@
                     .add-review
                         .add-review__container
                             .add-review__avatar-block
-                                .add-review__author-photo
+                                .add-review__author-photo(
+                                    :style={'backgroundImage' : `url(${this.url})`}
+                                )
                                 .add-review__add-photo-btn
-                                    button.btn.btn--blue-color Добавить фото
+                                    label(
+                                        class="btn btn--blue-color"
+                                    ) Добавить фото
+                                        input(
+                                            type="file"
+                                            class="add-review__file-input"
+                                            @change="appendFileAndRenderPhoto"
+                                        )
                             .add-review__desc-block
                                 .add-review__desc-row
                                     .add-review__input-block
@@ -126,11 +135,30 @@
 
 <script>
 export default {
-    components: {
-        Card: () => import('components/Card.vue'),
-        addBtn: () => import('components/AddBtn.vue'),
-        routeInfo: () => import('components/Route.vue')
-    }
-}
+	components: {
+		Card: () => import("components/Card.vue"),
+		addBtn: () => import("components/AddBtn.vue"),
+		routeInfo: () => import("components/Route.vue")
+	},
+	data() {
+		return {
+            photo: '',
+            url: ''
+        }
+	},
+	methods: {
+		appendFileAndRenderPhoto(e) {
+			const file = e.target.files[0],
+				reader = new FileReader();
+
+			this.photo = file;
+
+			reader.readAsDataURL(file);
+			reader.onload = () => {
+				this.renderedPhotoUrl = reader.result;
+			};
+		}
+	}
+};
 </script>
 
