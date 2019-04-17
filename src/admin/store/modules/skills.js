@@ -7,7 +7,7 @@ export default {
         async addNewSkill({commit}, skill) {
             try {
                 const response = await this.$axios.post('/skills', skill);
-                commit('ADD_SKILL', skill)
+                this.fetchSkills();
                 return response;
             } catch (error) {
             }

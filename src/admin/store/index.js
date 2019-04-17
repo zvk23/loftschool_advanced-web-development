@@ -6,11 +6,13 @@ Vue.use(Vuex);
 import categories from './modules/categories';
 import skills from './modules/skills';
 import user from './modules/user';
+import reviews from './modules/reviews';
 
 export const store = new Vuex.Store({
     modules: {
         categories,
         skills,
-        user
+        user,
+        reviews
     }
 })
