@@ -46,7 +46,7 @@ export default {
     },
     methods: {
         closeLoginForm() {
-            this.$emit('closeLoginForm')
+            window.location = window.location.origin
         },
         clearErrors() {
             this.$refs.username.classList.remove('is-error');

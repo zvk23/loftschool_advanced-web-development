@@ -46,7 +46,7 @@
                                         .add-review__input-block
                                             label(for="author-review").add-review__label Отзыв
                                             textarea.add-review__input.add-review__input--text#author-review(
-                                                placeholder="Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!"
+                                                placeholder="Текст отзыва"
                                                 v-model="review.text"
                                             )
                                 .add-review__footer
@@ -61,6 +61,64 @@
                                             @click="addReview"
                                         )
                                             | Сохранить
+                transition(
+                        name='card'
+                    )
+                        Card(
+                            modifier="full-size"
+                            title="Редактировать"
+                            v-if="editMode"
+                        )
+                            .add-review
+                                .add-review__container
+                                    .add-review__avatar-block
+                                        .add-review__author-photo(
+                                            :style='reviewsImage'
+                                        )
+                                        .add-review__add-photo-btn
+                                            label(
+                                                class="btn btn--blue-color"
+                                            ) Добавить фото
+                                                input(
+                                                    type="file"
+                                                    class="add-review__file-input"
+                                                    @change="createFormData"
+                                                )
+                                    .add-review__desc-block
+                                        .add-review__desc-row
+                                            .add-review__input-block
+                                                label(for="author-name").add-review__label Имя автора
+                                                input.add-review__input.add-review__input-name#author-name(
+                                                    v-model="editedSkill.author"
+                                                )
+                                            
+                                            .add-review__input-block
+                                                label(for="author-position").add-review__label Титут автора
+                                                input.add-review__input.add-review__input--position#author-position(
+                                                    v-model="editedSkill.occ"
+                                                )
+
+                                        .add-review__desc-row
+                                            .add-review__input-block
+                                                label(for="author-review").add-review__label Отзыв
+                                                textarea.add-review__input.add-review__input--text#author-review(
+                                                    placeholder="Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!"
+                                                    v-model="editedSkill.text"
+                                                )
+                                    .add-review__footer
+                                        .add-review__footer-btn
+                                            button.btn.btn--cancel(
+                                                @click="editMode = false"
+                                            )
+                                                | Отменить
+                                        
+                                        .add-review__footer-btn
+                                            button.btn.btn--gradient(
+                                                @click="changeReview(editedSkill)"
+                                            )
+                                                | Сохранить
+
+            
             
             
             .reviews__reviews-container
@@ -75,7 +133,7 @@
                         add-btn(
                             size="card"
                             name="Добавить работу"
-                            @addBtnHandler="addReviewMode = true"
+                            @addBtnHandler="setMode('add')"
                         )
                     
                     li.reviews__reviews-item(
@@ -89,6 +147,7 @@
                             :photo="review.photo"
                             :id="review.id"
                             @deleteCurrentReview="deleteCurrentReview"
+                            @editReview="showEditForm"
                         )
                         
 </template>
@@ -110,9 +169,17 @@ export default {
                 photo: '',
                 author: '',
                 occ: '',
-                text: 'Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!'
+                text: ''
             },
-            addReviewMode: false
+            addReviewMode: false,
+            editMode: false,
+            editedSkill: {
+                photo: '',
+                author: '',
+                occ: '',
+                text: '',
+                id: ''
+            }
         }
 	},
     computed: {
@@ -124,7 +191,7 @@ export default {
         }
     },
     methods: {
-        ...mapActions('reviews', ['fetchReviews', 'createReview', 'removeReview']),
+        ...mapActions('reviews', ['fetchReviews', 'createReview', 'removeReview', 'editReview']),
         getBase64(file) {
             this.review.photo = file;
             return new Promise((resolve, reject) => {
@@ -133,6 +200,36 @@ export default {
             reader.onload = () => resolve(reader.result);
             reader.onerror = error => reject(error);
             });
+        },
+        setMode(mode) {
+            switch(mode) {
+                case 'add' :
+                this.addReviewMode = true;
+                this.editMode = false;
+                break;
+
+                case 'edit' :
+                this.editMode = true;
+                this.addReviewMode = false;
+                break;
+            }
+        },
+        setEditedSkill(review) {
+            const {author, text, occ, id} = review;
+            this.editedSkill.author = author;
+            this.editedSkill.text = text;
+            this.editedSkill.occ = occ;
+            this.editedSkill.id = id;
+            
+        },
+        createFormData(editedReview) {
+            const formData = new FormData();
+            formData.append('text', editedReview.text)
+            formData.append('author', editedReview.author)
+            formData.append('occ', editedReview.occ)
+            formData.append('photo', editedReview.photo)
+
+            return formData
         },
         async addReview() {
             try {
@@ -144,18 +241,37 @@ export default {
         async getPhotoUrl(e) {
             try {
                 const result = await this.getBase64(e.target.files[0]);
-                this.url = result;
+                    this.url = result;
             } catch (error) {
             }
         },
-        deleteCurrentReview(id) {
-            this.removeReview(id);
+        async deleteCurrentReview(id) {
+            try {
+                await this.removeReview(id);
+            } catch (error) {
+                console.log('error.message', error.message);
+            }
+        },
+        async showEditForm(review) {
+            try {
+                this.setMode('edit');
+                await this.setEditedSkill(review);
+            } catch (error) {
+                
+            }
+        },
+        async changeReview(editedReview) {
+            try {
+                await this.editReview(editedReview);
+                this.editMode = false;
+            } catch (error) {
+                
+            }
         }
     },
     async created() {
         try {
             await this.fetchReviews()
-            console.log('this.reviews', this.reviews);
         } catch (error) {
             
         }

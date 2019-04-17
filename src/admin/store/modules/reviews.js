@@ -6,11 +6,6 @@ export default {
     actions: {
         async createReview({commit}, review) {
             try {
-                const formData = new FormData();
-                formData.append('text', review.text)
-                formData.append('author', review.author)
-                formData.append('occ', review.occ)
-                formData.append('photo', review.photo)
                 const response = await this.$axios.post('/reviews', formData);
                 commit('ADD_REVIEW', review)
                 return response;
@@ -37,6 +32,15 @@ export default {
             } catch (error) {
                 console.log('error.message', error.message);
             }
+        },
+        async editReview({commit}, editedReview) {
+            try {
+                const response = await this.$axios.post(`/reviews/${editedReview.id}`, editedReview);
+                commit('CHANGE_REVIEW', editedReview);
+                return response;
+            } catch (error) {
+                
+            }
         }
     },
     mutations: {
@@ -48,6 +52,9 @@ export default {
         },
         ADD_REVIEW: (state, review) => {
             state.reviews.push(review)
+        },
+        CHANGE_REVIEW: (state, editedReview) => {
+            state.reviews = state.reviews.map(review => review.id === editedReview.id ? editedReview : review)
         }
     }
 }

@@ -22,8 +22,9 @@ export default {
         title: String
     },
     methods: {
-        logout() {
-            this.$router.replace('/login');
+        async logout() {
+            await localStorage.removeItem('token');
+            window.location = window.location.origin
         }
     }
 }

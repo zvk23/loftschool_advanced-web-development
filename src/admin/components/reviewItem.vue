@@ -8,7 +8,9 @@
     )   
         .reviews__review-text {{ text }}
         .reviews__review-footer
-            button.btn.btn--change
+            button.btn.btn--change(
+                @click="emitEditReview"
+            )
                 |  Править
             
             button.btn.btn--delete(
@@ -18,30 +20,37 @@
 </template>
  
  <script>
- export default {
-     components: {
-         Card: () => import('components/Card.vue')
-     },
-     props: [
-        'author',
-        'occ',
-        'text',
-        'photo',
-        'id'
-     ],
-     computed: {
-        photoUrl: function () {
-            return `https://webdev-api.loftschool.com/${this.photo}`
+export default {
+	components: {
+		Card: () => import("components/Card.vue")
+	},
+	props: ["author", "occ", "text", "photo", "id"],
+    data() {
+        return {
+            skill: {
+                author: this.author,
+                occ: this.occ,
+                text: this.text,
+                photo: this.photo,
+                id: this.id
+            }
         }
-     },
-     methods: {
-         emitRemoveReview() {
-             this.$emit('deleteCurrentReview', this.id)
-         }
-     },
-     created() {
-         console.log('this.photoUrl', this.photoUrl);
-     }
- }
- </script>
+    },
+	computed: {
+		photoUrl: function() {
+			return `https://webdev-api.loftschool.com/${this.photo}`;
+		}
+	},
+	methods: {
+		emitRemoveReview() {
+			this.$emit("deleteCurrentReview", this.id);
+		},
+        emitEditReview() {
+            this.$emit('editReview', this.skill)
+        }
+	},
+	created() {
+	}
+};
+</script>
  
