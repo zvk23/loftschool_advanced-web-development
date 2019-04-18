@@ -4,7 +4,6 @@
             pageTitle="Работы"
         )
         .container.works__container
-            pre {{newWork}}
             transition(
                 name="card"
             )
@@ -64,74 +63,65 @@
                                 .add-work__input-block
                                     label(for="work-tags").add-work__input-label Добавление тегов
                                     input.add-work__input#work-tags(
-                                        @keyup.enter="addTag"
+                                        v-model="newWork.techs"
+                                        @input="watchTags"
                                     )
                                     .add-work__tags-container
-                                        .add-work__tag 
-                                            | HTML5
-                                            button.add-work__close-tag-btn
-                                        .add-work__tag 
-                                            | CSS3
-                                            button.add-work__close-tag-btn
-                                        .add-work__tag 
-                                            | JavaScript
-                                            button.add-work__close-tag-btn
+                                        .add-work__tag(
+                                            v-for="tag in newWorkTags"
+                                        )
+                                            tag(
+                                                :title="tag"
+                                            )
                             
                             .add-work__footer
                                 .add-work__footer-btn
                                     button.btn.btn--cancel(
                                         @click="addWorkMode = false"
                                     ) Отменить
-                                .add-work__footer-btn
+                                .add-work__footer-btn(
+                                    @click="createWork(newWork)"
+                                )
                                     button.btn.btn--gradient Сохранить
          
-         
-         
-         
-         
-         
-         
             .works__works-container 
-                ul.works__works-list
-                    li.works__work-item
+                transition-group(
+                    tag="ul"
+                    class="works__works-list"
+                    name="card"
+                )
+                    li.works__work-item(
+                        key="add-work-btn"
+                    )
                          add-btn(
                             size="card"
                             name="Добавить работу"
                             @addBtnHandler="setMode('add')"
                         )
 
-                    li.works__work-item
-                        Card(
-                            modifier="work-item"
-                            type="work"
+                    li.works__work-item(
+                        v-for="work in works"
+                        :key="work.id"
+                    )
+                        workItem(
+                            :work="work"
+                            @removeWork="removeCurrentWork"
                         )
-                            .works__work-content
-                                .works__work-title Название работы
-
-                                .works__work-desc 
-                                    | Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
-                                
-                                .works__work-link-container
-                                    a(href="").works__work-link https://loftschool.com
-
-                            .works__work-footer
-                                .works__work-footer-btn
-                                    button.btn.btn--change Изменить
-                                
-                                .works__work-footer-btn
-                                    button.btn.btn--delete Удалить
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex';
 export default {
     components: {
         addBtn: () => import('components/addBtn.vue'),
         Card: () => import('components/Card.vue'),
-        routeInfo: () => import('components/Route.vue')
+        routeInfo: () => import('components/Route.vue'),
+        tag: () => import('components/Tag.vue'),
+        workItem: () => import('components/workItem')
     },
     data() {
         return {
-            addWorkMode: true,
+            addWorkMode: false,
             editMode: false,
             newWork: {
                 title: '',
@@ -139,15 +129,21 @@ export default {
                 photo: '',
                 link: '',
                 description: '',
-            }
+            },
+            photoUrl: '',
+            newWorkTags: []
         }
     },
     computed: {
+        ...mapState('works', {
+            works: (state) => state.works
+        }),
         workImage: function () {
-            return {'backgroundImage' : `url(${this.newWork.photo})`}
+            return {'backgroundImage' : `url(${this.photoUrl})`}
         }
     },
     methods: {
+        ...mapActions('works', ['fetchWork', 'addWork', 'removeWork']),
         setMode(mode) {
             switch(mode) {
                 case 'add' :
@@ -159,10 +155,22 @@ export default {
                 this.editMode = true;
                 this.addWorkMode = false;
                 break;
+                
+                case 'default' :
+                this.editMode = false;
+                this.addWorkMode = false;
+                break;
             }
         },
-        addTag() {
-            console.log('true', true);
+        resetAddForm() {
+            this.newWork.title = ''
+            this.newWork.techs = ''
+            this.newWork.photo = ''
+            this.newWork.link = ''
+            this.newWork.description = ''
+        },
+        watchTags() {
+            this.newWorkTags = this.newWork.techs.split(' ');
         },
         getBase64(file) {
             try {
@@ -177,13 +185,14 @@ export default {
                 console.log('error.message', error.message);
             }
         },
-        createFormData(editedReview) {
+        createFormData(work) {
             try {
                 const formData = new FormData();
-                formData.append('text', editedReview.text)
-                formData.append('author', editedReview.author)
-                formData.append('occ', editedReview.occ)
-                formData.append('photo', editedReview.photo)
+                formData.append('title', work.title)
+                formData.append('techs', work.techs)
+                formData.append('link', work.link)
+                formData.append('photo', work.photo)
+                formData.append('description', work.description)
 
                 return formData
             } catch (error) {
@@ -193,10 +202,38 @@ export default {
         async getPhotoUrl(e) {
             try {
                 const result = await this.getBase64(e.target.files[0]);
-                this.newWork.photo = result;
+                this.photoUrl = result;
             } catch (error) {
             }
         },
+        async createWork(workObj) {
+            try {
+                const work = await this.createFormData(workObj);
+                const response = await this.addWork(work);
+                await this.fetchWork();
+                await this.resetAddForm();
+                this.setMode('default')
+            } catch (error) {
+                console.log('error.message', error.message);
+            }
+        },
+        async removeCurrentWork(id) {
+            try {
+                await this.removeWork(id);
+                await this.fetchWork()
+            } catch (error) {
+                
+            }
+        }
+    },
+    async created() {
+        try {
+            await this.fetchWork();
+        } catch (error) {
+            console.log('error.message', error.message);
+        }
+    },
+    async updated() {
     }
 }
 </script>

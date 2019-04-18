@@ -36,7 +36,8 @@ export default {
         async editReview({commit}, editedReview) {
             try {
                 const response = await this.$axios.post(`/reviews/${editedReview.id}`, editedReview);
-                commit('CHANGE_REVIEW', editedReview);
+                await commit('CHANGE_REVIEW', editedReview);
+                this.fetchReviews();
                 return response;
             } catch (error) {
                 

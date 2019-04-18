@@ -51,9 +51,11 @@
                     .card__author-position {{ authorPosition }}
 
         //- work
-        .card__header.card__header--work(v-else-if="type == 'work'")
+        .card__header.card__header--work(
+            v-else-if="type == 'work'"
+            :style="currentWorkImage"
+        )
             .card__work-thumb
-                img(src="../../images/content/portfolio/1.jpg").card__work-image
                 .card__tags-list
                     .card__tags-item HTML5
                     .card__tags-item CSS3
@@ -82,13 +84,20 @@ export default {
         authorPosition: String,
         authorAvatarUrl: String,
         title: String,
-        categoryId: Number
+        categoryId: Number,
+        workImage: String,
+        workId: Number
     },
     data() {
         return {
             newGroupName: '',
             editSkillsGroupName: false,
             groupTitle: 'Workflow'
+        }
+    },
+    computed: {
+        currentWorkImage: function () {
+            return {'backgroundImage' : `url('https://webdev-api.loftschool.com/${this.workImage}')`}
         }
     },
     methods: {
@@ -104,7 +113,7 @@ export default {
             this.$emit('removeCategory', this.categoryId)
         }
     },
-    created() {
+    async created() {
     }
 }
 </script>

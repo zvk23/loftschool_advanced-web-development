@@ -16,7 +16,7 @@ export default {
             try {
                 const {data: {user: {id}}} = await this.$axios.get('/user');
                 const {data} = await this.$axios.get(`/skills/${id}`);
-                commit('SET_SKILLS', data)
+                await commit('SET_SKILLS', data)
             } catch (error) {
                 alert(error.message)
             }
