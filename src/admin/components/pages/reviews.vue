@@ -222,18 +222,28 @@ export default {
             this.editedSkill.id = id;
             
         },
-        createFormData(editedReview) {
+        createFormData(review) {
             const formData = new FormData();
-            formData.append('text', editedReview.text)
-            formData.append('author', editedReview.author)
-            formData.append('occ', editedReview.occ)
-            formData.append('photo', editedReview.photo)
+            formData.append('text', review.text)
+            formData.append('author', review.author)
+            formData.append('occ', review.occ)
+            formData.append('photo', review.photo)
 
             return formData
         },
+        resetNewReview() {
+            this.review.photo = '';
+            this.review.author = '';
+            this.review.occ = '';
+            this.review.text = '';
+            this.url = ''
+        },
         async addReview() {
             try {
-                const response = await this.createReview(this.review);
+                const formData = this.createFormData(this.review);
+                const response = await this.createReview(formData);
+                await this.resetNewReview()
+                await this.fetchReviews();
             } catch (error) {
                 
             }

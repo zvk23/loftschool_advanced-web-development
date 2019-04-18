@@ -6,8 +6,8 @@ export default {
     actions: {
         async createReview({commit}, review) {
             try {
-                const response = await this.$axios.post('/reviews', formData);
-                commit('ADD_REVIEW', review)
+                const response = await this.$axios.post('/reviews', review);
+                // commit('ADD_REVIEW', review)
                 return response;
             } catch (error) {
                 console.log('error.message', error.message);   
