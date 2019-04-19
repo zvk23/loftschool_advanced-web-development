@@ -38,8 +38,8 @@ export default {
     data() {
         return {
             user: {
-                name: 'zvikk',
-                password: '5533e211'
+                name: '',
+                password: ''
             },
             errors: []
         }

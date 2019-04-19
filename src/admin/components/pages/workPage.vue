@@ -3,7 +3,6 @@
         route-info(
             pageTitle="Работы"
         )
-        pre {{editableWork}}
         .container.works__container
             transition(
                 name="card"
