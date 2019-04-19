@@ -3,13 +3,14 @@
         route-info(
             pageTitle="Работы"
         )
+        pre {{editableWork}}
         .container.works__container
             transition(
                 name="card"
             )
                 Card(
                     modifier="full-size"
-                    title="Редактирование работы"
+                    title="Добавление работы"
                     type="add"
                     v-if="addWorkMode"
                 )
@@ -79,11 +80,73 @@
                                     button.btn.btn--cancel(
                                         @click="addWorkMode = false"
                                     ) Отменить
-                                .add-work__footer-btn(
-                                    @click="createWork(newWork)"
-                                )
-                                    button.btn.btn--gradient Сохранить
-         
+                                .add-work__footer-btn
+                                    button.btn.btn--gradient(
+                                        @click="createWork(newWork)"
+                                    ) Сохранить
+            transition(
+                    name="card"
+                )
+                    Card(
+                        modifier="full-size"
+                        title="Редактирование работы"
+                        type="add"
+                        v-if="editMode"
+                    )
+                        .add-work
+                            .add-work__container
+                                .add-work__side.add-work__side--image
+                                    .add-work__change-image-container
+                                        .add-work__work-image(:style='editableWorkPhoto')
+                                        
+                                        label.add-work__change-image-btn Изменить превью
+                                            input(type="file").add-work__image-input(
+                                                @change="getEditablePhotoUrl"
+                                            )
+
+                                .add-work__side.add-work__side--descriptions                    
+                                    .add-work__input-block
+                                        label(for="work-name").add-work__input-label Название
+                                        input.add-work__input#work-name(
+                                            v-model="editableWork.title"
+                                        )
+
+                                    .add-work__input-block
+                                        label(for="work-link").add-work__input-label Ссылка
+                                        input.add-work__input#work-link(
+                                            v-model="editableWork.title"
+                                        )
+                                
+                                    .add-work__input-block
+                                        label(for="work-desc").add-work__input-label Описание
+                                        textarea.add-work__input.add-work__input--area#work-desc(
+                                            v-model="editableWork.description"
+                                        )
+                                    
+                                    .add-work__input-block
+                                        label(for="work-tags").add-work__input-label Добавление тегов
+                                        input.add-work__input#work-tags(
+                                            v-model="editableWork.techs"
+                                            @input="watchTags('edit')"
+                                        )
+                                        .add-work__tags-container
+                                            .add-work__tag(
+                                                v-for="tag in editableWork.taglist "
+                                            )
+                                                tag(
+                                                    :title="tag"
+                                                )
+                                
+                                .add-work__footer
+                                    .add-work__footer-btn
+                                        button.btn.btn--cancel(
+                                            @click="addWorkMode = false"
+                                        ) Отменить
+                                    .add-work__footer-btn
+                                        button.btn.btn--gradient(
+                                            @click="saveEditableWork"
+                                        ) Сохранить
+
             .works__works-container 
                 transition-group(
                     tag="ul"
@@ -106,6 +169,7 @@
                         workItem(
                             :work="work"
                             @removeWork="removeCurrentWork"
+                            @editWork="changeCurrentWork"
                         )
 </template>
 
@@ -130,6 +194,13 @@ export default {
                 link: '',
                 description: '',
             },
+            editableWork: {
+                title: '',
+                techs: '',
+                photo: '',
+                link: '',
+                description: ''
+            },
             photoUrl: '',
             newWorkTags: []
         }
@@ -140,10 +211,17 @@ export default {
         }),
         workImage: function () {
             return {'backgroundImage' : `url(${this.photoUrl})`}
-        }
+        },
+        editableWorkPhoto: function () {
+            console.log(this.editableWork.photo);
+            const
+                template = /uploads/g, 
+                result = !this.editableWork.photo.match(template) ? {'backgroundImage' : `url(${this.editableWork.photo})`} : {'backgroundImage' : `url(https://webdev-api.loftschool.com/${this.editableWork.photo})`};
+            return result;
+        },
     },
     methods: {
-        ...mapActions('works', ['fetchWork', 'addWork', 'removeWork']),
+        ...mapActions('works', ['fetchWork', 'addWork', 'removeWork', 'changeWork']),
         setMode(mode) {
             switch(mode) {
                 case 'add' :
@@ -169,8 +247,13 @@ export default {
             this.newWork.link = ''
             this.newWork.description = ''
         },
-        watchTags() {
-            this.newWorkTags = this.newWork.techs.split(' ');
+        watchTags(mode) {
+            if( mode === 'edit') {
+                console.log('true', true);
+                this.editableWork.taglist = this.editableWork.techs.split(' ');
+            } else {
+                this.newWorkTags = this.newWork.techs.split(' ');
+            }
         },
         getBase64(file) {
             try {
@@ -193,17 +276,29 @@ export default {
                 formData.append('link', work.link)
                 formData.append('photo', work.photo)
                 formData.append('description', work.description)
+                if(work.id) {
+                    formData.append('id', work.id)
+                }
 
                 return formData
             } catch (error) {
                 console.log('error.message', error.message);
             }
         },
-        async getPhotoUrl(e) {
+        async getPhotoUrl() {
             try {
                 const result = await this.getBase64(e.target.files[0]);
+                
                 this.photoUrl = result;
             } catch (error) {
+            }
+        },
+        async getEditablePhotoUrl(e) {
+            try {
+                const result = await this.getBase64(e.target.files[0]);
+                this.editableWork.photo = result;
+            } catch (error) {
+                console.log('error', error);
             }
         },
         async createWork(workObj) {
@@ -220,6 +315,32 @@ export default {
         async removeCurrentWork(id) {
             try {
                 await this.removeWork(id);
+                await this.fetchWork()
+            } catch (error) {
+                
+            }
+        },
+        setEditableWork(work) {
+            this.editableWork.id = work.id;
+            this.editableWork.title = work.title;
+            this.editableWork.techs = work.techs;
+            this.editableWork.photo = work.photo;
+            this.editableWork.link = work.link;
+            this.editableWork.description = work.description;
+        },
+        async changeCurrentWork(work) {
+            try {
+                await this.setEditableWork(work);
+                await this.setMode('edit')
+            } catch (error) {
+                
+            }
+        },
+        async saveEditableWork() {
+            try {
+                this.setMode('default')
+                const data = await this.createFormData(this.editableWork)
+                await this.changeWork(this.editableWork);
                 await this.fetchWork()
             } catch (error) {
                 

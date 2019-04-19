@@ -25,7 +25,16 @@ export default {
         async removeWork({commit}, workId) {
             try {
                 const response = await this.$axios.delete(`/works/${workId}`);
-                console.log('true', true);
+                return response;
+            } catch (error) {
+                
+            }
+        }, 
+        async changeWork({commit}, editableWork) {
+            try {
+                await console.log('editableWork store', editableWork);
+                const response = await this.$axios.post(`/works/${editableWork.id}`, editableWork);
+                console.log('response', response);
                 return response;
             } catch (error) {
                 
