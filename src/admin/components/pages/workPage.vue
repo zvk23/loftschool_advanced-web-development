@@ -3,6 +3,7 @@
         route-info(
             pageTitle="Работы"
         )
+        pre {{editableWork}}
         .container.works__container
             transition(
                 name="card"
@@ -215,7 +216,7 @@ export default {
             console.log(this.editableWork.photo);
             const
                 template = /uploads/g, 
-                result = !this.editableWork.photo.match(template) ? {'backgroundImage' : `url(${this.editableWork.photo})`} : {'backgroundImage' : `url(https://webdev-api.loftschool.com/${this.editableWork.photo})`};
+                result = typeof this.editableWork.photo != 'object' && !this.editableWork.photo.match(template) ? {'backgroundImage' : `url(${this.editableWork.photo})`} : {'backgroundImage' : `url(https://webdev-api.loftschool.com/${this.editableWork.photo})`};
             return result;
         },
     },
@@ -284,18 +285,18 @@ export default {
                 console.log('error.message', error.message);
             }
         },
-        async getPhotoUrl() {
+        async getPhotoUrl(e) {
             try {
                 const result = await this.getBase64(e.target.files[0]);
-                
                 this.photoUrl = result;
             } catch (error) {
+                console.log('error.message', error.message);
             }
         },
         async getEditablePhotoUrl(e) {
             try {
                 const result = await this.getBase64(e.target.files[0]);
-                this.editableWork.photo = result;
+                this.editableWork.photo = e.target.files[0];
             } catch (error) {
                 console.log('error', error);
             }
