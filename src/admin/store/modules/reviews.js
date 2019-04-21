@@ -25,7 +25,6 @@ export default {
         },
         async removeReview({commit}, reviewId){
             try {
-                console.log('reviewId', reviewId);
                 const response = await this.$axios.delete(`/reviews/${reviewId}`);
                 commit('REMOVE_REVIEWS', reviewId)
                 return response;

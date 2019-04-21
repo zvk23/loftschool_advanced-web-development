@@ -72,9 +72,14 @@ export default {
                 console.log('error', error);
             }
         },
+        resetNewSkill() {
+            this.newSkill.title = ''
+            this.newSkill.percent = ''
+        },
         async addSkill(skill) {
             try {
                 const response = await this.addNewSkill(skill);
+                await this.$emit('updateSkills')
             } catch (error) {
                 console.log('error', error);
             }

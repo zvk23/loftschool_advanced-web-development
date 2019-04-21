@@ -44,6 +44,7 @@
                         SkillsList(
                             :categoryId="category.id"
                             :skills="filterSkillsByCategoryId(category.id)"
+                            @updateSkills="updateSkills"
                         )
                         
 </template>
@@ -67,7 +68,7 @@ export default {
     },
     computed: {
         ...mapState('categories', {
-            categories: (state) => state.categories,
+            categories: (state) => state.categories
         }),
         ...mapState('skills', {
             skills: (state) => state.skills
@@ -95,6 +96,14 @@ export default {
             try {
                 await this.removeCategory(categoryId)
                 await this.fetchCategories();
+            } catch (error) {
+                console.log('error.message', error.message);
+            }
+        },
+        async updateSkills() {
+            try {
+                await this.fetchCategories();
+                await this.fetchSkills()
             } catch (error) {
                 console.log('error.message', error.message);
             }
