@@ -3,7 +3,7 @@
         .container.header__container
             .header__user
                 .header__user-avatar
-                    img.header__user-avatar-image(src="../../../images/content/user.jpg")
+                    img.header__user-avatar-image(src="../../images/content/user.jpg")
                 .header__user-info
                     .header__user-name Виктор Ефименко
                     a.header__controls-link.header__controls-link--desktop-hidden Выйти
@@ -11,13 +11,21 @@
             .header__title {{title}}
 
             .header__controls-block
-                a.header__controls-link.header__controls-link--desktop-visible Выйти
+                a.header__controls-link.header__controls-link--desktop-visible(
+                    @click="logout"
+                ) Выйти
 </template>
 
 <script>
 export default {
     props: {
         title: String
+    },
+    methods: {
+        async logout() {
+            await localStorage.removeItem('token');
+            window.location = window.location.origin
+        }
     }
 }
 </script>

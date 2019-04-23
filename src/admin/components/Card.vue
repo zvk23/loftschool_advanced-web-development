@@ -1,11 +1,47 @@
 <template lang="pug">
     .card(:class="modifier ? 'card--' + modifier : '' ")
+        //- skill
         .card__header(v-if="type == 'skill'")
-            h3.card__header-title {{ title }}
-            .card__header-btns
-                button.btn.btn--ok.card__header-btn
-                button.btn.btn--remove.card__header-btn
+            h3.card__header-title(
+                v-if="!editSkillsGroupName"
+            ) {{ title }}
+            input.card__header-title-input(
+                v-else
+                v-model="title"
+            )
+            .card__header-btns(
+                v-if="!editSkillsGroupName"
+            )
+                button.btn.btn--change.btn--change-gray.card__header-btn(
+                    @click="editSkillsGroupName = true"
+                )
+            
+            .card__header-btns(
+                v-else="editSkillsGroupName"
+            )
+                button.btn.btn--ok.card__header-btn(
+                    @click="editSkillsGroupName = false"
+                )
+                button.btn.btn--remove.card__header-btn(
+                    @click="emitRemoveCategory"
+                )
 
+        //- add-skill-group
+        .card__header(v-else-if="type == 'add-skills-group'")
+            input.card__header-title-input(
+                v-model="newGroupName"
+                placeholder="New group name"
+                @keyup.enter="addSkillGroup"
+            )
+            .card__header-btns
+                button.btn.btn--ok.card__header-btn(
+                    @click="addSkillGroup"
+                )
+                button.btn.btn--remove.card__header-btn(
+                    @click="closeAddSkillForm"
+                )
+
+        //- review
         .card__header(v-else-if="type == 'review'")
             .card__review-author
                 .card__author-photo
@@ -14,9 +50,12 @@
                     .card__author-name {{ author }}
                     .card__author-position {{ authorPosition }}
 
-        .card__header.card__header--work(v-else-if="type == 'work'")
+        //- work
+        .card__header.card__header--work(
+            v-else-if="type == 'work'"
+            :style="currentWorkImage"
+        )
             .card__work-thumb
-                img(src="../../../images/content/portfolio/1.jpg").card__work-image
                 .card__tags-list
                     .card__tags-item HTML5
                     .card__tags-item CSS3
@@ -30,6 +69,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
     data() {
         return {
@@ -42,7 +83,37 @@ export default {
         author: String,
         authorPosition: String,
         authorAvatarUrl: String,
-        title: String
+        title: String,
+        categoryId: Number,
+        workImage: String,
+        workId: Number
+    },
+    data() {
+        return {
+            newGroupName: '',
+            editSkillsGroupName: false,
+            groupTitle: 'Workflow'
+        }
+    },
+    computed: {
+        currentWorkImage: function () {
+            return {'backgroundImage' : `url('https://webdev-api.loftschool.com/${this.workImage}')`}
+        }
+    },
+    methods: {
+        closeAddSkillForm() {
+            this.$emit('closeAddSkillsForm')
+        },
+        addSkillGroup() {
+            this.$emit('addSkillGroup', this.newGroupName);
+            this.newGroupName = ''
+        },
+        emitRemoveCategory() {
+            this.editSkillsGroupName = false
+            this.$emit('removeCategory', this.categoryId)
+        }
+    },
+    async created() {
     }
 }
 </script>

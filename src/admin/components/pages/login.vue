@@ -14,58 +14,74 @@
                 )
                     label.app-login__label(for="app-login-username") Логин
                     input.app-login__input#app-login-username(
-                        v-model="username"
+                        v-model="user.name"
                     )
                 .app-login__input-block.app-login__input-block--pass(
                     ref="password"
                 )
                     label.app-login__label(for="app-login-pass") Пароль
                     input.app-login__input#app-login-pass(
-                        v-model="password"
+                        v-model="user.password"
+                        type="password"
                     )
 
-                button.btn.btn--gradient-border.app-login__btn Отправить
+                button.btn.btn--gradient-border.app-login__btn(
+                    @click="login"
+                ) Отправить
 
 </template>
 
 <script>
+import $axios from '@/requests';
+
 export default {
     data() {
         return {
-            username: null,
-            password: null,
+            user: {
+                name: '',
+                password: ''
+            },
             errors: []
         }
     },
     methods: {
         closeLoginForm() {
-            this.$emit('closeLoginForm')
+            window.location = window.location.origin
         },
         clearErrors() {
             this.$refs.username.classList.remove('is-error');
             this.$refs.password.classList.remove('is-error');
-        }
-        ,
+        },
         checkForm(e) {
+            e.preventDefault();
             this.clearErrors();
 
-            if(this.username && this.password) {
+            if(this.user.name && this.user.password) {
                 return true
             };
 
             this.errors = [];
 
-            if(!this.username) {
+            if(!this.user.name) {
                 this.errors.push('Введите имя');
                 this.$refs.username.classList.add('is-error');
             };
 
-            if(!this.password) {
+            if(!this.user.password) {
                 this.errors.push('Введите пароль');
                 this.$refs.password.classList.add('is-error');
             };
-
-            e.preventDefault();
+        },
+        async login() {
+            try {
+                const response = await $axios.post('/login', this.user);
+                const token = response.data.token;
+                localStorage.setItem('token',token);
+                $axios.defaults.headers["Authorization"] = `Bearer ${token}`;
+                this.$router.replace('/')
+            } catch (error) {
+                console.log('error', error);
+            }
         }
     },
     mounted() {
@@ -76,6 +92,5 @@ export default {
 <style lang="postcss" scoped>
 
 </style>
-
 
 
